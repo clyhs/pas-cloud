@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pas.cloud.demo.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.pas.cloud.demo.bean.User">
+		<id column="USERID" property="userId" jdbcType="INTEGER" />
+		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		USERID, USERNAME, PASSWORD 
+	</sql>
+	<select id="getById" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from T_USER 
+		where USERID = #{userId,jdbcType=INTEGER}
+	</select>
+	<delete id="delete" parameterType="java.lang.Integer">
+		delete from T_USER
+		where USERID = #{userId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.pas.cloud.demo.bean.User">
+		insert into T_USER (USERID, USERNAME, PASSWORD
+		)
+		values (#{userId,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.pas.cloud.demo.bean.User">
+		insert into T_USER
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				USERID,
+			</if>
+			<if test="username != null">
+				USERNAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userId != null">
+				#{userId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="update" parameterType="com.pas.cloud.demo.bean.User">
+		update T_USER
+		<set>
+			<if test="username != null">
+				USERNAME = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where USERID = #{userId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.pas.cloud.demo.bean.User">
+		update T_USER
+		set USERNAME = #{username,jdbcType=VARCHAR},
+		PASSWORD = #{password,jdbcType=VARCHAR}
+		where USERID = #{userId,jdbcType=INTEGER}
+	</update>
+
+	<select id="getAll" resultMap="BaseResultMap">
+		select USERID, USERNAME, PASSWORD from T_USER
+	</select>
+	
+	
+	
+	
+</mapper>
