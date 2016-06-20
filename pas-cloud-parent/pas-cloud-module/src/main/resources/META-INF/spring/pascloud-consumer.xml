@@ -29,6 +29,8 @@
     
     <dubbo:reference id="demoService" interface="com.pas.cloud.api.demo.DemoService"/>
     
+    <dubbo:reference id="userService" interface="com.pas.cloud.api.demo.UserService"/>
+    
     
 </beans>
 

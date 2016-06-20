@@ -19,7 +19,7 @@ public class DemoController {
 	@Autowired
 	private DemoService demoService;
 	
-	@Reference(version="1.0.0")
+	@Autowired
 	private UserService userService;
 	
 	@RequestMapping("/module/demo/index")
@@ -37,10 +37,10 @@ public class DemoController {
 	@RequestMapping("/module/demo/insert")
 	@ResponseBody
 	public String insert(HttpServletRequest request,HttpServletResponse response){
-		Integer userId = Integer.valueOf(request.getParameter("userid"));
+		//Integer userId = Integer.valueOf(request.getParameter("userid"));
 		User u = new User();
-		u.setUserId(userId);
-		u.setUsername("ccc"+userId);
+		u.setUserId(1);
+		u.setUsername("ccc");
 		u.setPassword("3rerw3");
 		userService.insert(u);
 		return demoService.sayHello();

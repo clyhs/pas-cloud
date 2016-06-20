@@ -70,7 +70,7 @@
 
 
 
-
+    <!-- 
 
 	<rdb:data-source id="shardingDataSource">
 		<rdb:sharding-rule data-sources="dataSource_0,dataSource_1">
@@ -89,9 +89,11 @@
 			<prop key="metrics.enable">false</prop>
 		</rdb:props>
 	</rdb:data-source>
+	
+	-->
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="shardingDataSource" />
+		<property name="dataSource" ref="dataSource_0" />
 		<property name="mapperLocations"
 			value="classpath*:com/pas/cloud/**/mapping/*Mapper.xml" />
 	</bean>
@@ -102,7 +104,7 @@
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource_0" />
 	</bean>
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -125,7 +127,7 @@
 	</tx:advice>
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* com.pas.cloud.service.**..*Impl.*(..))" />
+			expression="execution(* com.pas.cloud.service.**.*Impl.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice" />
 	</aop:config>

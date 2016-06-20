@@ -39,10 +39,18 @@
     <bean id="demoService" class="com.pas.cloud.service.demo.DemoServiceImpl" >
         <property name="msgService" ref="msgService" />
     </bean>
+    <bean id="userService" class="com.pas.cloud.service.demo.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"></property>
+    </bean>
     
     
     <dubbo:service interface="com.pas.cloud.api.demo.DemoService" ref="demoService"  
         protocol="dubbo" />
+    
+    <dubbo:service interface="com.pas.cloud.api.demo.UserService" ref="userService"  
+        protocol="dubbo" />
+    
+    
     
 </beans>
 

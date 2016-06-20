@@ -7,10 +7,18 @@ import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.demo.dao.UserMapper;
 
-@Service(version="1.0.0")
+
 public class UserServiceImpl implements UserService {
 	
-	@Autowired
+
+	public UserMapper getUserMapper() {
+		return userMapper;
+	}
+
+	public void setUserMapper(UserMapper userMapper) {
+		this.userMapper = userMapper;
+	}
+
 	private UserMapper userMapper;
 
 	public User getById(Integer userId) {
