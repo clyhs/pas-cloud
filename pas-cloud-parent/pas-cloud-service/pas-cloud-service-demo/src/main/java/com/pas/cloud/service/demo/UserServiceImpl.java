@@ -7,6 +7,7 @@ import com.pas.cloud.anno.PasDataSource;
 import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.demo.dao.UserMapper;
+import com.pas.cloud.util.DataSourceHolder;
 
 
 public class UserServiceImpl implements UserService {

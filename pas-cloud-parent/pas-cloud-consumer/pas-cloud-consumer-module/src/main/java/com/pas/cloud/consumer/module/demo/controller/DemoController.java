@@ -34,8 +34,8 @@ public class DemoController {
 	@RequestMapping("/module/demo/index")
 	@ResponseBody
 	public String index(){
-		
-		stringRedisTemplate.opsForValue().set("001", "dataSource_1");
+		//dataSource_1
+		stringRedisTemplate.opsForValue().set("001", "dataSource_0");
 		return "index";
 	}
 	
@@ -54,7 +54,7 @@ public class DemoController {
 		u.setUsername("ccc");
 		u.setPassword("3rerw3");
 		userService.insert(u);
-		return demoService.sayHello();
+		return "ok";
 	}
 
 }

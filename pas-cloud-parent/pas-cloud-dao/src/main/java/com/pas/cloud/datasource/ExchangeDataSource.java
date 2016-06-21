@@ -29,6 +29,10 @@ public class ExchangeDataSource implements MethodBeforeAdvice,
 	public void before(Method method, Object[] args, Object target)
 			throws Throwable {
 		// TODO Auto-generated method stub
+		System.out.println("**************aop start**************");
+		System.out.println(method.getName());
+		
+		
 		if (method.isAnnotationPresent(PasDataSource.class)){
 			
 			System.out.println("****************************");
@@ -42,7 +46,20 @@ public class ExchangeDataSource implements MethodBeforeAdvice,
 			
 			System.out.println("****************************");
 			
+		}else{
+            System.out.println("---------------------------");
+			
+			System.out.println(method.getName());
+			
+			String dataSourceName= stringRedisTemplate.opsForValue().get("001");
+			
+			System.out.println("--------------"+dataSourceName+"-------------");
+			DataSourceHolder.setDataSource(dataSourceName);
+			
+			System.out.println("------------------");
 		}
+		
+		System.out.println("*************aop end***************");
 
 	}
 

@@ -115,6 +115,16 @@
 		<property name="basePackage" value="com.pas.cloud.**.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
+	
+	<aop:config>
+		<aop:pointcut id="routerDataSource"
+			expression="execution(* com.pas.cloud.service.**.*Impl.*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut"
+		    advice-ref="exchangeDataSource" />
+		
+	</aop:config>
+	
+	
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -139,13 +149,17 @@
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
+	
+	<!-- 
+	<bean id="exchangeDataSource" class="com.pas.cloud.datasource.ExchangeDataSource" /> -->
+	
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
 			expression="execution(* com.pas.cloud.service.**.*Impl.*(..))" />
+		
 		<aop:advisor pointcut-ref="transactionPointcut"
-			advice-ref="transactionAdvice" order="2" />
-		<aop:advisor pointcut-ref="transactionPointcut"
-		    advice-ref="exchangeDataSource" order="1"/>
+			advice-ref="transactionAdvice"  /> 
+
 	</aop:config>
 
 
