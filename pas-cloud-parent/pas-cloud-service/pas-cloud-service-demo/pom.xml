@@ -25,6 +25,10 @@
 			<groupId>com.pascloud</groupId>
 			<artifactId>pas-cloud-dao</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.pascloud</groupId>
+			<artifactId>pas-cloud-service-base</artifactId>
+		</dependency>
 	</dependencies>
 
 

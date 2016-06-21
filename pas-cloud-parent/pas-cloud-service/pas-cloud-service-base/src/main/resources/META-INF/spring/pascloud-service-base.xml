@@ -39,6 +39,10 @@
 			</list>
 		</property>
 	</bean>
+	
+	<bean id="msgService" class="com.pas.cloud.common.MsgService">
+	    <property name="msg" value="${pas.cloud.msg}"/>
+	</bean>
 
 </beans>
 

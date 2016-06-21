@@ -22,11 +22,6 @@
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
 
 	
-	
-	<bean id="msgService" class="com.pas.cloud.common.MsgService">
-	    <property name="msg" value="${pas.cloud.msg}"/>
-	</bean>
-
 </beans>
 
 
