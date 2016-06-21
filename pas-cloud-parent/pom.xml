@@ -69,6 +69,12 @@
 				<version>${project.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-consumer-module</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 
 
 			<!-- spring 3.2 -->
@@ -659,8 +665,7 @@
 		<module>pas-cloud-common</module>
 		<module>pas-cloud-api</module>
 		<module>pas-cloud-service</module>
-		<module>pas-cloud-web</module>
-		<module>pas-cloud-module</module>
 		<module>pas-cloud-dao</module>
+		<module>pas-cloud-consumer</module>
 	</modules>
 </project>
