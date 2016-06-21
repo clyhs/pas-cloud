@@ -67,16 +67,30 @@
 		<property name="logAbandoned" value="true" />
 		<property name="filters" value="mergeStat" />
 	</bean>
-
-
+	
+	<!-- 配置多数据源映射关系 -->
+    <bean id="dataSource" class="com.pas.cloud.datasource.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="dataSource_0" value-ref="dataSource_0"></entry>
+                <entry key="dataSource_1" value-ref="dataSource_1"></entry>
+            </map>
+        </property>
+    <!-- 默认目标数据源为你主库数据源 -->
+        <property name="defaultTargetDataSource" ref="dataSource_0"/>
+    </bean>
 
     <!-- 
+	<rdb:strategy id="databaseStrategy" sharding-columns="userId" 
+	    algorithm-expression="dataSource_${userId.longValue() % 2}"/>
+
+     
 
 	<rdb:data-source id="shardingDataSource">
-		<rdb:sharding-rule data-sources="dataSource_0,dataSource_1">
+		<rdb:sharding-rule data-sources="dataSource_0,dataSource_1" >
 			<rdb:table-rules>
 				<rdb:table-rule logic-table="t_user" actual-tables="t_user"
-					/>
+					database-strategy="databaseStrategy" />
 			</rdb:table-rules>
 			<rdb:default-database-strategy
 				sharding-columns="none"
@@ -93,7 +107,7 @@
 	-->
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource_0" />
+		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
 			value="classpath*:com/pas/cloud/**/mapping/*Mapper.xml" />
 	</bean>
@@ -104,7 +118,7 @@
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource_0" />
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
@@ -129,7 +143,9 @@
 		<aop:pointcut id="transactionPointcut"
 			expression="execution(* com.pas.cloud.service.**.*Impl.*(..))" />
 		<aop:advisor pointcut-ref="transactionPointcut"
-			advice-ref="transactionAdvice" />
+			advice-ref="transactionAdvice" order="2" />
+		<aop:advisor pointcut-ref="transactionPointcut"
+		    advice-ref="exchangeDataSource" order="1"/>
 	</aop:config>
 
 

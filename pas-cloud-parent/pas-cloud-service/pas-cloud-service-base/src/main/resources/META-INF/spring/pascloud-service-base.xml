@@ -36,6 +36,7 @@
 		<property name="locations">
 			<list>
 				<value>../conf/config.properties</value>
+				<value>classpath*:redis.properties</value>
 			</list>
 		</property>
 	</bean>

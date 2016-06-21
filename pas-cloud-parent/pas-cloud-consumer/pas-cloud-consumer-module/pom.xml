@@ -17,5 +17,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+	    <dependency>
+		    <groupId>com.pascloud</groupId>
+	        <artifactId>pas-cloud-redis</artifactId>
+		</dependency>
 	</dependencies>
 </project>

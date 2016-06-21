@@ -3,6 +3,7 @@ package com.pas.cloud.service.demo;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.pas.cloud.anno.PasDataSource;
 import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.demo.dao.UserMapper;
@@ -26,6 +27,7 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@PasDataSource
 	public void insert(User user) {
 		// TODO Auto-generated method stub
 		userMapper.insert(user);
