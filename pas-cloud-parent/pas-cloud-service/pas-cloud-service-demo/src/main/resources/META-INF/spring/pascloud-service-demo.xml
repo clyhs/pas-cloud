@@ -30,23 +30,25 @@
     <import resource="classpath*:META-INF/spring/pascloud-api.xml" /> -->
 
     <dubbo:registry address="${zookeeper.host}:${zookeeper.port}"/>
-    <dubbo:annotation package="com.pas.cloud.api" />
+    <dubbo:annotation package="com.pas.cloud.service" />
     <dubbo:protocol name="dubbo" serialization="dubbo" port="20880"/>
     
     
 	
     <!-- spring bean -->
+    <!--  
     <bean id="demoService" class="com.pas.cloud.service.demo.DemoServiceImpl" >
         <property name="msgService" ref="msgService" />
     </bean>
+    -->
     <bean id="userService" class="com.pas.cloud.service.demo.UserServiceImpl">
         <property name="userDao" ref="userDao" />
     </bean>
     
-    
+    <!-- 
     <dubbo:service interface="com.pas.cloud.api.demo.DemoService" ref="demoService"  
         protocol="dubbo" />
-    
+    -->
     <dubbo:service interface="com.pas.cloud.api.demo.UserService" ref="userService"  
         protocol="dubbo" />
     

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pas.cloud.api.demo.DemoService;
+import com.pas.cloud.api.demo.HelloService;
 import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.module.intf.demo.IUserBusiness;
@@ -32,6 +33,8 @@ public class DemoController {
 	@Autowired
 	private DemoService demoService;
 	
+	@Reference(version="1.0.0")
+	private HelloService helloService;
 	
 	@Autowired
 	private IUserBusiness userBusiness; 
@@ -50,7 +53,7 @@ public class DemoController {
 	@RequestMapping("/hello")
 	@ResponseBody
 	public String hello(){
-		return demoService.sayHello();
+		return helloService.sayHello();
 	}
 	
 	@RequestMapping("/module/demo/insert")
