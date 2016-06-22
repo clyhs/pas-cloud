@@ -1,4 +1,4 @@
-package com.pas.cloud.consumer.module.demo.controller;
+package com.pas.cloud.module.web.demo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,11 +49,17 @@ public class DemoController {
 	@ResponseBody
 	public String insert(HttpServletRequest request,HttpServletResponse response){
 		Integer userId = Integer.valueOf(request.getParameter("userid"));
+		Integer dbtype = Integer.valueOf(request.getParameter("dbtype"));
 		User u = new User();
 		u.setUserId(userId);
 		u.setUsername("ccc");
 		u.setPassword("3rerw3");
-		userService.insert(u);
+		if(dbtype==1){
+			userService.insert(u);
+		}else{
+			demoService.insert(u);
+		}
+		
 		return "ok";
 	}
 

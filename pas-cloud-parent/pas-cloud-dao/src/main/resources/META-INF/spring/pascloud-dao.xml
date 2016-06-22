@@ -116,6 +116,7 @@
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	
+	<!-- 
 	<aop:config>
 		<aop:pointcut id="routerDataSource"
 			expression="execution(* com.pas.cloud.service.**.*Impl.*(..))" />
@@ -123,6 +124,7 @@
 		    advice-ref="exchangeDataSource" />
 		
 	</aop:config>
+	-->
 	
 	
 
