@@ -3,6 +3,12 @@ package com.pas.cloud.base;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.util.DataSourceHolder;
 
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-22 下午4:00:00
+ */
 public abstract class BaseServiceSupport<T> {
 
 	protected String dataSource;

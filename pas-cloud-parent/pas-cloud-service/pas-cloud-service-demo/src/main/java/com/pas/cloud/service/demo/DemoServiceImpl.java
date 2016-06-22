@@ -10,7 +10,12 @@ import com.pas.cloud.util.DataSourceHolder;
 import com.pas.cloud.common.MsgService;
 
 
-
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-22 下午4:00:00
+ */
 public class DemoServiceImpl implements DemoService {
 	
 	private MsgService msgService;

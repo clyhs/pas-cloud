@@ -24,11 +24,7 @@
 
     <cache:annotation-driven cache-manager="cacheManager"/>
     
-	<!-- 配置spring-session -->
-	<!-- 
-	<bean
-		class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration" />
-    -->
+	
 	<bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig"
           p:maxTotal="${redis.pool.maxTotal}"
           p:maxIdle="${redis.pool.maxIdle}"

@@ -11,7 +11,12 @@ import com.pas.cloud.demo.dao.UserDao;
 import com.pas.cloud.demo.mapper.UserMapper;
 import com.pas.cloud.util.DataSourceHolder;
 
-
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-22 下午4:00:00
+ */
 public class UserServiceImpl extends BaseServiceSupport<User> implements UserService {
 	
 	private UserDao userDao;

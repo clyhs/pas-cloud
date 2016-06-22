@@ -12,6 +12,13 @@ import org.springframework.stereotype.Component;
 import com.pas.cloud.anno.PasDataSource;
 import com.pas.cloud.util.DataSourceHolder;
 
+
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-22 下午4:00:00
+ */
 @Component
 public class ExchangeDataSource implements MethodBeforeAdvice,
 		AfterReturningAdvice {

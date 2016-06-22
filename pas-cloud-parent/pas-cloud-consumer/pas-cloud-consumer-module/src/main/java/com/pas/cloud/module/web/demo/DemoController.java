@@ -16,6 +16,12 @@ import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.module.intf.demo.IUserBusiness;
 import com.pas.cloud.util.DataSourceHolder;
 
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-22 下午4:01:04
+ */
 @Controller
 public class DemoController {
 	
@@ -26,8 +32,6 @@ public class DemoController {
 	@Autowired
 	private DemoService demoService;
 	
-	@Autowired
-	private UserService userService;
 	
 	@Autowired
 	private IUserBusiness userBusiness; 

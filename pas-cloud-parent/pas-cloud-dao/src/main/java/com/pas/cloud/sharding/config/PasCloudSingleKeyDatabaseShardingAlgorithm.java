@@ -7,6 +7,12 @@ import com.dangdang.ddframe.rdb.sharding.api.ShardingValue;
 import com.dangdang.ddframe.rdb.sharding.api.strategy.database.SingleKeyDatabaseShardingAlgorithm;
 import com.google.common.collect.Range;
 
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-22 下午4:00:00
+ */
 public class PasCloudSingleKeyDatabaseShardingAlgorithm implements
 		SingleKeyDatabaseShardingAlgorithm<Integer> {
 	
