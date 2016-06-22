@@ -1,4 +1,4 @@
-package com.pas.cloud.dao;
+package com.pas.cloud.base;
 
 import java.util.List;
 

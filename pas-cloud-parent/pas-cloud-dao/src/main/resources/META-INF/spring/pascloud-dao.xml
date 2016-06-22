@@ -112,7 +112,7 @@
 			value="classpath*:com/pas/cloud/**/mapping/*Mapper.xml" />
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.pas.cloud.**.dao" />
+		<property name="basePackage" value="com.pas.cloud.**.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	
@@ -157,7 +157,7 @@
 	
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
-			expression="execution(* com.pas.cloud.service.**.*Impl.*(..))" />
+			expression="execution(* com.pas.cloud.**.dao.*Dao.*(..))" />
 		
 		<aop:advisor pointcut-ref="transactionPointcut"
 			advice-ref="transactionAdvice"  /> 

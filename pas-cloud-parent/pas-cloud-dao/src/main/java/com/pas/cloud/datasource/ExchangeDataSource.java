@@ -33,31 +33,20 @@ public class ExchangeDataSource implements MethodBeforeAdvice,
 		System.out.println(method.getName());
 		
 		
-		if (method.isAnnotationPresent(PasDataSource.class)){
+		
+        System.out.println("---------------------------");
 			
-			System.out.println("****************************");
+	    System.out.println(target.getClass().getName());
 			
-			System.out.println(method.getName());
+		String dataSourceName= "dataSource_1";
+		
+		//target.getClass();
 			
-			String dataSourceName= stringRedisTemplate.opsForValue().get("001");
+		System.out.println("--------------"+dataSourceName+"-------------");
+		DataSourceHolder.setDataSource(dataSourceName);
 			
-			System.out.println("************"+dataSourceName+"****************");
-			DataSourceHolder.setDataSource(dataSourceName);
-			
-			System.out.println("****************************");
-			
-		}else{
-            System.out.println("---------------------------");
-			
-			System.out.println(method.getName());
-			
-			String dataSourceName= stringRedisTemplate.opsForValue().get("001");
-			
-			System.out.println("--------------"+dataSourceName+"-------------");
-			DataSourceHolder.setDataSource(dataSourceName);
-			
-			System.out.println("------------------");
-		}
+		System.out.println("------------------");
+		
 		
 		System.out.println("*************aop end***************");
 

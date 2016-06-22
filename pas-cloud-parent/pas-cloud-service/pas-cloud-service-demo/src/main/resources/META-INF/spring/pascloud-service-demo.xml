@@ -38,10 +38,10 @@
     <!-- spring bean -->
     <bean id="demoService" class="com.pas.cloud.service.demo.DemoServiceImpl" >
         <property name="msgService" ref="msgService" />
-        <property name="userMapper" ref="userMapper" />
+        <property name="userDao" ref="userDao" />
     </bean>
     <bean id="userService" class="com.pas.cloud.service.demo.UserServiceImpl">
-        <property name="userMapper" ref="userMapper" />
+        <property name="userDao" ref="userDao" />
     </bean>
     
     

@@ -13,6 +13,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.pas.cloud.api.demo.DemoService;
 import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.demo.bean.User;
+import com.pas.cloud.module.intf.demo.IUserBusiness;
 import com.pas.cloud.util.DataSourceHolder;
 
 @Controller
@@ -27,6 +28,9 @@ public class DemoController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private IUserBusiness userBusiness; 
 	
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
@@ -49,16 +53,12 @@ public class DemoController {
 	@ResponseBody
 	public String insert(HttpServletRequest request,HttpServletResponse response){
 		Integer userId = Integer.valueOf(request.getParameter("userid"));
-		Integer dbtype = Integer.valueOf(request.getParameter("dbtype"));
+		//Integer dbtype = Integer.valueOf(request.getParameter("dbtype"));
 		User u = new User();
 		u.setUserId(userId);
 		u.setUsername("ccc");
 		u.setPassword("3rerw3");
-		if(dbtype==1){
-			userService.insert(u);
-		}else{
-			demoService.insert(u);
-		}
+		userBusiness.insert(u);
 		
 		return "ok";
 	}

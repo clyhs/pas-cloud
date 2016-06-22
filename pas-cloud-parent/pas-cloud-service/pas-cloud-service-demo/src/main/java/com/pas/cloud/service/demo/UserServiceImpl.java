@@ -5,36 +5,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.pas.cloud.anno.PasDataSource;
 import com.pas.cloud.api.demo.UserService;
-import com.pas.cloud.base.dao.BaseServiceSupport;
+import com.pas.cloud.base.BaseServiceSupport;
 import com.pas.cloud.demo.bean.User;
-import com.pas.cloud.demo.dao.UserMapper;
+import com.pas.cloud.demo.dao.UserDao;
+import com.pas.cloud.demo.mapper.UserMapper;
 import com.pas.cloud.util.DataSourceHolder;
 
 
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends BaseServiceSupport<User> implements UserService {
 	
-	private UserMapper userMapper;
-	
+	private UserDao userDao;
 
-	public User getById(Integer userId) {
+	public UserDao getUserDao() {
+		return userDao;
+	}
+	public void setUserDao(UserDao userDao) {
+		this.userDao = userDao;
+	}
+	
+	@Override
+	public void add(User u) {
 		// TODO Auto-generated method stub
-		return userMapper.getById(userId);
+		userDao.insert(u);
 	}
-
-	public UserMapper getUserMapper() {
-		return userMapper;
-	}
-
-	public void setUserMapper(UserMapper userMapper) {
-		this.userMapper = userMapper;
-	}
-
-	
-	public void insert(User u) {
+	@Override
+	public User findById(Integer userId) {
 		// TODO Auto-generated method stub
-		userMapper.insert(u);
+		return userDao.getById(userId);
 	}
-
 	
+
 
 }

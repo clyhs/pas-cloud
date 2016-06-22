@@ -6,6 +6,4 @@ public interface DemoService {
 	
 	public String sayHello();
 	
-	public void insert(User user);
-
 }
