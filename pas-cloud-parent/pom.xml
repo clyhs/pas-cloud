@@ -674,5 +674,6 @@
 		<module>pas-cloud-consumer</module>
 		<module>pas-cloud-redis</module>
     <module>pas-cloud-quartz</module>
+    <module>pas-cloud-kettle</module>
   </modules>
 </project>
