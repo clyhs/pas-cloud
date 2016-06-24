@@ -33,17 +33,16 @@
 			<version>${kettle.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>pentaho-kettle</groupId>
-			<artifactId>kettle-engine</artifactId>
-			<version>${kettle.version}</version>
-		</dependency>
+        <dependency>
+				<groupId>pentaho-kettle</groupId>
+				<artifactId>kettle-engine</artifactId>
+				<version>${kettle.version}</version>
+			</dependency>
 
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.30</version>
-		</dependency>
-
+			<dependency>
+				<groupId>kettle</groupId>
+				<artifactId>connector-java</artifactId>
+				<version>${kettle.version}</version>
+			</dependency>
 	</dependencies>
 </project>
