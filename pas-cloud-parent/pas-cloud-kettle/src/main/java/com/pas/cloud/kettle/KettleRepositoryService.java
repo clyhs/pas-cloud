@@ -9,11 +9,17 @@ import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.plugins.PluginRegistry;
 import org.pentaho.di.core.plugins.RepositoryPluginType;
 import org.pentaho.di.core.util.EnvUtil;
+import org.pentaho.di.job.Job;
+import org.pentaho.di.job.JobMeta;
 import org.pentaho.di.repository.RepositoriesMeta;
 import org.pentaho.di.repository.Repository;
+import org.pentaho.di.repository.RepositoryDirectory;
+import org.pentaho.di.repository.RepositoryDirectoryInterface;
 import org.pentaho.di.repository.RepositoryMeta;
 import org.pentaho.di.repository.filerep.KettleFileRepositoryMeta;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryMeta;
+import org.pentaho.di.trans.Trans;
+import org.pentaho.di.trans.TransMeta;
 
 public class KettleRepositoryService {
 	
@@ -252,5 +258,37 @@ public class KettleRepositoryService {
 		System.out.println("*****check repository end*****");
 		return flag;
 	}
+	
+	public void getfilefromRepository(Repository repository){
+		RepositoryDirectory rd = null;
+		RepositoryDirectoryInterface rdi = null;
+		try {
+			rd = new RepositoryDirectory();
+			
+			//rdi = new RepositoryDirectory();  
+			rdi = repository.loadRepositoryDirectoryTree();
+			//rdi.setObjectId(repository.);
+			
+			//rdi.getChildren();
+			for(RepositoryDirectoryInterface r:rdi.getChildren()){
+				System.out.println(r.getPath());
+			}
+			
+			JobMeta jobMeta = new JobMeta();
+			jobMeta = repository.loadJob("job", rdi, null, null);
+			Job job = new Job(repository,jobMeta);
+			job.start();
+			job.waitUntilFinished();
+//			TransMeta tranMeta = repository.
+//					loadTransformation(repository.getTransformationID("转换 1", rdi), null);  
+//	        Trans trans = new Trans(tranMeta);  
+//	        trans.execute(null);  
+//	        trans.waitUntilFinished();  
+			
+		} catch (KettleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	} 
 
 }
