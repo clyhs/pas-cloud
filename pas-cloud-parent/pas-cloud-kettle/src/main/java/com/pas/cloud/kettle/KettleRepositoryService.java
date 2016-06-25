@@ -1,6 +1,7 @@
 package com.pas.cloud.kettle;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.pentaho.di.core.KettleEnvironment;
@@ -15,11 +16,14 @@ import org.pentaho.di.repository.RepositoriesMeta;
 import org.pentaho.di.repository.Repository;
 import org.pentaho.di.repository.RepositoryDirectory;
 import org.pentaho.di.repository.RepositoryDirectoryInterface;
+import org.pentaho.di.repository.RepositoryElementMetaInterface;
 import org.pentaho.di.repository.RepositoryMeta;
 import org.pentaho.di.repository.filerep.KettleFileRepositoryMeta;
 import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryMeta;
 import org.pentaho.di.trans.Trans;
 import org.pentaho.di.trans.TransMeta;
+
+import com.pas.cloud.kettle.bean.RepositoryTree;
 
 public class KettleRepositoryService {
 	
@@ -267,20 +271,36 @@ public class KettleRepositoryService {
 			
 			//rdi = new RepositoryDirectory();  
 			rdi = repository.loadRepositoryDirectoryTree();
-			//rdi.setObjectId(repository.);
+			buildTree(rdi,repository);
+			//rdi.setObjerepositoryctId(repository.);
+//			System.out.println(repository.getJobNames(rdi.getObjectId(), true));
+//			for(String n:repository.getJobNames(rdi.getObjectId(), true)){
+//				System.out.println(n);
+//			}
+//			repository.getTransformationNames(rdi.getObjectId(), true);
+//			for(String s:repository.getTransformationNames(rdi.getObjectId(), true)){
+//				System.out.println(s);
+//			}
+//			//rdi.getChildren();
+//			for(RepositoryDirectoryInterface r:rdi.getChildren()){
+//				System.out.println(r.getPath());
+//				
+//				System.out.println(r.getName());
+//				System.out.println(r.getObjectId());
+//				repository.getTransformationNames(rdi.getObjectId(), true);
+//				for(String s:repository.getTransformationNames(r.getObjectId(), true)){
+//					System.out.println(s);
+//				}
+//				
+//			}
 			
-			//rdi.getChildren();
-			for(RepositoryDirectoryInterface r:rdi.getChildren()){
-				System.out.println(r.getPath());
-			}
-			
-			JobMeta jobMeta = new JobMeta();
-			jobMeta = repository.loadJob("job", rdi, null, null);
-			Job job = new Job(repository,jobMeta);
-			job.start();
-			job.waitUntilFinished();
-//			TransMeta tranMeta = repository.
-//					loadTransformation(repository.getTransformationID("转换 1", rdi), null);  
+//			JobMeta jobMeta = new JobMeta();
+//			jobMeta = repository.loadJob("job", rdi, null, null);
+//			Job job = new Job(repository,jobMeta);
+//			job.start();
+//			job.waitUntilFinished();
+//			TransMeta tranMeta = repository.loadTransformation("trans01", rdi, null, true, null);  
+//			
 //	        Trans trans = new Trans(tranMeta);  
 //	        trans.execute(null);  
 //	        trans.waitUntilFinished();  
@@ -289,6 +309,58 @@ public class KettleRepositoryService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	} 
+	}
+	
+	private RepositoryTree buildTree(RepositoryDirectoryInterface rdi,Repository rep){
+		RepositoryTree rt = new RepositoryTree();
+		List<String> filenames = new ArrayList<String>();
+		rt.setObjId(rdi.getObjectId());
+		rt.setName(rdi.getName());
+		System.out.println(rt.getName());
+		rt.setPath(rdi.getPath());
+		rt.setRdi(rdi);
+		
+		try {
+			for(String jobname:rep.getJobNames(rdi.getObjectId(), true)){
+				filenames.add(jobname+".ktj");
+				System.out.println("filename:"+jobname);
+			}
+			for(String tranname:rep.getTransformationNames(rdi.getObjectId(), true)){
+				System.out.println("filename:"+tranname);
+				filenames.add(tranname+".ktr");
+			}
+		} catch (KettleException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(rdi.getChildren().size()>0){
+			List<RepositoryTree> childrens = new ArrayList<RepositoryTree>();
+			for(RepositoryDirectoryInterface r:rdi.getChildren()){
+				RepositoryTree child = new RepositoryTree();
+				child = buildTree(r,rep);
+				childrens.add(child);
+			}
+			rt.setChildrens(childrens);
+		}
+		return rt;
+	}
+	
+	public RepositoryDirectoryInterface getDirectory(Repository rep, String filePath){
+		RepositoryDirectoryInterface tree = null;
+		try{
+			tree = rep.loadRepositoryDirectoryTree();
+			for(int i=0;i<tree.getNrSubdirectories();i++){
+				RepositoryDirectory subdir = tree.getSubdirectory(i); 
+	            System.out.println(" id " + subdir.getObjectId() + " name " + subdir.getName()); 			
+			}
+			if ((filePath != null) && (!"/".equals(filePath)) && (!"".equals(filePath))){
+				rep.findDirectory(filePath);
+			}
+		}catch(Exception e){
+			
+		}
+		return tree;
+    }
 
 }

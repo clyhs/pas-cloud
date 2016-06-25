@@ -54,8 +54,12 @@ public class KettleUtils {
 			
 			//kps.createKettleDatabaseRepository("ddrr",databaseMeta,databaseProperties);
 			
-			Repository r =kps.getRepository("test","","");
-			kps.getfilefromRepository(r);
+			//Repository r =kps.getRepository("mydatarep","admin","admin");
+			//kps.getfilefromRepository(r);
+			KettleJobService kjs = new KettleJobService(kps);
+			KettleTransService kts = new KettleTransService(kps);
+			kjs.execute("mydatarep","admin","admin", "/", "job");
+			kts.execute("mydatarep","admin","admin", "/", "ttt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();

@@ -25,7 +25,10 @@
 	</repositories>
 
 	<dependencies>
-
+        <dependency>
+            <groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-common</artifactId>
+        </dependency>
 
 		<dependency>
 			<groupId>pentaho-kettle</groupId>
