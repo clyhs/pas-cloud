@@ -43,22 +43,43 @@
 	
 	<!-- redis操作模板 -->
     <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
-          p:connectionFactory-ref="jedisConnectionFactory"/>
+          p:connectionFactory-ref="jedisConnectionFactory"    />
           <!--p:keySerializer="org.springframework.data.redis.serializer.StringRedisSerializer"-->
           <!--p:valueSerializer="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"-->
           
+    <bean id="topcMessageListener" class="com.pas.cloud.redis.TopicMessageListener">
+		<property name="redisTemplate" ref="redisTemplate"></property>
+	</bean>
           
+    <bean id="topicContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer" destroy-method="destroy">
+		<property name="connectionFactory" ref="jedisConnectionFactory"/>
+		<property name="taskExecutor"><!-- 此处有个奇怪的问题，无法正确使用其他类型的Executor -->
+			<bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler">
+				<property name="poolSize" value="3"></property>
+			</bean>
+		</property>
+		<property name="messageListeners">
+			<map>
+				<entry key-ref="topcMessageListener">
+					<bean class="org.springframework.data.redis.listener.ChannelTopic">
+						<constructor-arg value="user:topic"/>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
           
     <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
           p:connectionFactory-ref="jedisConnectionFactory"/>
     <!-- 缓存 -->
-    <!--<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">-->
-        <!--<property name="caches">-->
-            <!--<set>-->
-                <!--<bean class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate"/>-->
-            <!--</set>-->
-        <!--</property>-->
-    <!--</bean>-->
+    <!--  
+    <bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
+        <property name="caches">
+            <set>
+                <bean class="org.springframework.data.redis.cache.RedisCacheManager" c:template-ref="redisTemplate"/>
+            </set>
+        </property>
+    </bean>-->
       
     <bean id="cacheManager" class="org.springframework.data.redis.cache.RedisCacheManager"
           c:template-ref="redisTemplate"/>

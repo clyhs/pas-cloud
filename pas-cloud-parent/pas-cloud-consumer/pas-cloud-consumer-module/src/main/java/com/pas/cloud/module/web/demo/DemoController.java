@@ -15,6 +15,7 @@ import com.pas.cloud.api.demo.HelloService;
 import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.module.intf.demo.IUserBusiness;
+import com.pas.cloud.redis.Producer;
 import com.pas.cloud.util.DataSourceHolder;
 
 /**
@@ -42,6 +43,9 @@ public class DemoController {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 	
+	@Autowired
+	private Producer producer;
+	
 	@RequestMapping("/module/demo/index")
 	@ResponseBody
 	public String index(){
@@ -67,6 +71,14 @@ public class DemoController {
 		u.setPassword("3rerw3");
 		userBusiness.insert(u);
 		
+		return "ok";
+	}
+	
+	@RequestMapping("/module/demo/publish")
+	@ResponseBody
+	public String publish(HttpServletRequest request,HttpServletResponse response){
+		
+		producer.publish();
 		return "ok";
 	}
 
