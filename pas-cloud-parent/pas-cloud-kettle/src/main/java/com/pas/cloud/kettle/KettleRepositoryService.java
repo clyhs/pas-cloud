@@ -25,6 +25,12 @@ import org.pentaho.di.trans.TransMeta;
 
 import com.pas.cloud.kettle.bean.RepositoryTree;
 
+/**
+ * 
+ * @author chenly 
+ *
+ * @version createtime:2016-6-27 上午10:05:12
+ */
 public class KettleRepositoryService {
 	
 	{

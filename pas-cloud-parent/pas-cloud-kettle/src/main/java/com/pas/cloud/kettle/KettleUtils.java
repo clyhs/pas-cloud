@@ -66,8 +66,17 @@ public class KettleUtils {
 			System.out.println(json);
 			KettleJobService kjs = new KettleJobService(kps);
 			KettleTransService kts = new KettleTransService(kps);
-			kjs.execute("mydatarep","admin","admin", "/", "job01");
-			//kts.execute("mydatarep","admin","admin", "/", "ttt");
+			//kjs.execute("mydatarep","admin","admin", "/", "job01");
+			kts.execute("mydatarep","admin","admin", "/", "tran01");
+			
+			//kjs.suspendJob("job01");
+			//Thread.sleep(5000);
+			//kjs.resumeJob("job01");
+			kts.stopTrans("tran01");
+			//kts.pauseTrans("tran01");
+			
+			//Thread.sleep(5000);
+			//kts.resumeTrans("tran01");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
