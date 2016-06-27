@@ -23,13 +23,16 @@ public class RepositoryTree implements Serializable {
 	
 	private String path;
 	
-	private ObjectId objId;
+	//private ObjectId objId;
 	
-	private RepositoryDirectoryInterface rdi;
+	//private RepositoryDirectoryInterface rdi;
 	
 	private List<RepositoryTree> childrens = new ArrayList<RepositoryTree>();
 	
 	private List<String> filenames = new ArrayList<String>();
+	
+	
+	
 
 	public List<String> getFilenames() {
 		return filenames;
@@ -47,21 +50,21 @@ public class RepositoryTree implements Serializable {
 		this.childrens = childrens;
 	}
 
-	public ObjectId getObjId() {
-		return objId;
-	}
-
-	public void setObjId(ObjectId objId) {
-		this.objId = objId;
-	}
-
-	public RepositoryDirectoryInterface getRdi() {
-		return rdi;
-	}
-
-	public void setRdi(RepositoryDirectoryInterface rdi) {
-		this.rdi = rdi;
-	}
+//	public ObjectId getObjId() {
+//		return objId;
+//	}
+//
+//	public void setObjId(ObjectId objId) {
+//		this.objId = objId;
+//	}
+//
+//	public RepositoryDirectoryInterface getRdi() {
+//		return rdi;
+//	}
+//
+//	public void setRdi(RepositoryDirectoryInterface rdi) {
+//		this.rdi = rdi;
+//	}
 
 	public String getName() {
 		return name;

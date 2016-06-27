@@ -20,6 +20,9 @@ import org.pentaho.di.repository.kdr.KettleDatabaseRepositoryMeta;
 import org.pentaho.di.www.JobMap;
 import org.pentaho.di.www.TransformationMap;
 
+import com.pas.cloud.kettle.bean.RepositoryTree;
+import com.pas.cloud.util.JsonUtil;
+
 /**
  * 
  * @author chenly 
@@ -54,12 +57,17 @@ public class KettleUtils {
 			
 			//kps.createKettleDatabaseRepository("ddrr",databaseMeta,databaseProperties);
 			
-			//Repository r =kps.getRepository("mydatarep","admin","admin");
-			//kps.getfilefromRepository(r);
+			Repository r =kps.getRepository("mydatarep","admin","admin");
+			RepositoryTree rt = kps.getfilefromRepository(r);
+			
+			
+			
+			String json =JsonUtil.objectToJson(rt);
+			System.out.println(json);
 			KettleJobService kjs = new KettleJobService(kps);
 			KettleTransService kts = new KettleTransService(kps);
-			kjs.execute("mydatarep","admin","admin", "/", "job");
-			kts.execute("mydatarep","admin","admin", "/", "ttt");
+			kjs.execute("mydatarep","admin","admin", "/", "job01");
+			//kts.execute("mydatarep","admin","admin", "/", "ttt");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();

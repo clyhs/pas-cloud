@@ -21,14 +21,16 @@ public class KettleJobService {
 		Repository r = null;
 		RepositoryDirectoryInterface rdi = null;
 		JobMeta jobMeta = new JobMeta();
+		System.out.println("**********job start:"+filePath+"**********");
 		try {
 			r = krs.getRepository(repName, username, password);
 			rdi = krs.getDirectory(r, filePath);
+			System.out.println("************"+rdi.getPath()+"*****************");
 			jobMeta = r.loadJob(fileName, rdi, null, null);
 
 			executeJob(r, jobMeta);
 		} catch (Exception e) {
-
+			e.printStackTrace();
 		}
 	}
 
