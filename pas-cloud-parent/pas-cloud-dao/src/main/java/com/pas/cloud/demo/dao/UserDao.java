@@ -1,6 +1,7 @@
 package com.pas.cloud.demo.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.pas.cloud.demo.bean.User;
@@ -12,7 +13,7 @@ import com.pas.cloud.demo.mapper.UserMapper;
  *
  * @version createtime:2016-6-22 下午4:00:00
  */
-@Service
+@Repository
 public class UserDao {
 
 	@Autowired
