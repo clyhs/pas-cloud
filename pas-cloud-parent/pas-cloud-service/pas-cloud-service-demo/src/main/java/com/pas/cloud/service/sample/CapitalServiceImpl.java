@@ -36,6 +36,8 @@ public class CapitalServiceImpl extends BaseServiceSupport<Capital> implements
 		// TODO Auto-generated method stub
 		capitalDao.save(t);
 	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see com.pas.cloud.base.BaseServiceSupport#findById(java.lang.Integer)
@@ -44,6 +46,17 @@ public class CapitalServiceImpl extends BaseServiceSupport<Capital> implements
 	public Capital findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+
+	/* (non-Javadoc)
+	 * @see com.pas.cloud.api.sample.CapitalService#getByUserId(long)
+	 */
+	public Capital getByUserId(long id) {
+		// TODO Auto-generated method stub
+		prepareDataSource();
+		return capitalDao.getByUserId(id);
 	}
 
 	

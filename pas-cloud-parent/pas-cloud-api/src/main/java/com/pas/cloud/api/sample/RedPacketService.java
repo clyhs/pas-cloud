@@ -18,4 +18,5 @@ import com.pas.cloud.transaction.api.TransactionContext;
 public interface RedPacketService  extends BaseService<RedPacket> {
 	
 
+	public RedPacket getByUserId(long id);
 }

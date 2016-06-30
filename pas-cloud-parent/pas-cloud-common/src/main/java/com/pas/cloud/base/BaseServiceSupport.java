@@ -50,7 +50,7 @@ public abstract class BaseServiceSupport<T> {
 	
 	
 	
-	private void prepareDataSource(){
+	protected void prepareDataSource(){
 		DataSourceHolder.setDataSource(dataSource);
 	}
 }

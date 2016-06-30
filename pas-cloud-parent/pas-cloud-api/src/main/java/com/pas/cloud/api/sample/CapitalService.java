@@ -18,4 +18,5 @@ import com.pas.cloud.transaction.api.TransactionContext;
 public interface CapitalService extends BaseService<Capital> {
 	
 
+	public Capital getByUserId(long id);
 }
