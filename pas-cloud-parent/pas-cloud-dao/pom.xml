@@ -18,42 +18,47 @@
 		<sharding-jdbc.version>1.3.0</sharding-jdbc.version>
 	</properties>
 	<dependencies>
-	    
-	    <dependency>
+
+		<dependency>
 			<groupId>com.pascloud</groupId>
 			<artifactId>pas-cloud-common</artifactId>
 		</dependency>
 		<dependency>
-		    <groupId>com.pascloud</groupId>
-	        <artifactId>pas-cloud-redis</artifactId>
+			<groupId>com.pascloud</groupId>
+			<artifactId>pas-cloud-redis</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.pascloud</groupId>
+			<artifactId>pas-cloud-transaction-spring</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.dangdang</groupId>
 			<artifactId>sharding-jdbc-core</artifactId>
 			<version>1.3.0</version>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>com.dangdang</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
-            <version>${sharding-jdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dangdang</groupId>
-            <artifactId>sharding-jdbc-transaction</artifactId>
-            <version>${sharding-jdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dangdang</groupId>
-            <artifactId>sharding-jdbc-config-yaml</artifactId>
-            <version>${sharding-jdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.dangdang</groupId>
-            <artifactId>sharding-jdbc-config-spring</artifactId>
-            <version>${sharding-jdbc.version}</version>
-        </dependency>
-		
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-core</artifactId>
+			<version>${sharding-jdbc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-transaction</artifactId>
+			<version>${sharding-jdbc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-config-yaml</artifactId>
+			<version>${sharding-jdbc.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dangdang</groupId>
+			<artifactId>sharding-jdbc-config-spring</artifactId>
+			<version>${sharding-jdbc.version}</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -64,34 +69,34 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatisspring.version}</version>
 			<exclusions>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-beans</artifactId>
-			    </exclusion>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-aop</artifactId>
-			    </exclusion>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-expression</artifactId>
-			    </exclusion>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-core</artifactId>
-			    </exclusion>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-tx</artifactId>
-			    </exclusion>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-context</artifactId>
-			    </exclusion>
-			    <exclusion>
-			        <groupId>org.springframework</groupId> 
-			        <artifactId>spring-jdbc</artifactId>
-			    </exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-beans</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-expression</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-context</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-jdbc</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 	</dependencies>

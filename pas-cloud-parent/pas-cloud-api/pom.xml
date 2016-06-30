@@ -22,5 +22,9 @@
 			<groupId>com.pascloud</groupId>
 			<artifactId>pas-cloud-common</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.pascloud</groupId>
+			<artifactId>pas-cloud-transaction-api</artifactId>
+		</dependency>
 	</dependencies>
 </project>

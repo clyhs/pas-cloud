@@ -127,7 +127,7 @@
 	-->
 	
 	
-
+    <!--  
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
@@ -151,10 +151,10 @@
 			<tx:method name="*" propagation="SUPPORTS" />
 		</tx:attributes>
 	</tx:advice>
-	
+	-->
 	<!-- 
 	<bean id="exchangeDataSource" class="com.pas.cloud.datasource.ExchangeDataSource" /> -->
-	
+	<!--  
 	<aop:config>
 		<aop:pointcut id="transactionPointcut"
 			expression="execution(* com.pas.cloud.**.dao.*Dao.*(..))" />
@@ -163,7 +163,12 @@
 			advice-ref="transactionAdvice"  /> 
 
 	</aop:config>
-
+    -->
+    
+    <bean id="transactionRepository"
+      class="com.pas.cloud.transaction.spring.repository.SpringJdbcTransactionRepository">
+    <property name="dataSource" ref="dataSource"/>
+</bean>
 
 </beans>
 

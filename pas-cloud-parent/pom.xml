@@ -79,6 +79,18 @@
 				<groupId>com.pascloud</groupId>
 				<artifactId>pas-cloud-redis</artifactId>
 				<version>${project.version}</version>
+
+			</dependency>
+
+			<dependency>
+				<groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-transaction-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-transaction-spring</artifactId>
+				<version>${project.version}</version>
 			</dependency>
 
 

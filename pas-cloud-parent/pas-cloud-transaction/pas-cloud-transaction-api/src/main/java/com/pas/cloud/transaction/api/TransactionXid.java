@@ -34,17 +34,14 @@ public class TransactionXid implements Xid, Serializable {
         this.branchQualifier = branchQualifier;
     }
 
-    @Override
     public int getFormatId() {
         return formatId;
     }
 
-    @Override
     public byte[] getGlobalTransactionId() {
         return globalTransactionId;
     }
 
-    @Override
     public byte[] getBranchQualifier() {
         return branchQualifier;
     }

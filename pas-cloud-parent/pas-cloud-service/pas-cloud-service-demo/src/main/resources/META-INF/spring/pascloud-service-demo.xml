@@ -29,7 +29,7 @@
     <import resource="classpath*:META-INF/spring/pascloud-common.xml" />
     <import resource="classpath*:META-INF/spring/pascloud-api.xml" /> -->
 
-    <dubbo:registry address="${zookeeper.host}:${zookeeper.port}"/>
+    <dubbo:registry address="${zookeeper.host}:${zookeeper.port}" file="../cache/dubbo.cache"/>
     <dubbo:annotation package="com.pas.cloud.service" />
     <dubbo:protocol name="dubbo" serialization="dubbo" port="20880"/>
     

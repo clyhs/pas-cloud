@@ -22,5 +22,7 @@ public class Producer {
 	
 	public void publish(){
 		redisTemplate.convertAndSend(channel, "test!");
+		
+		
 	}
 }

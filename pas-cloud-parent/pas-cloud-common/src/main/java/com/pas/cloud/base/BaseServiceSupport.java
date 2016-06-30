@@ -1,6 +1,8 @@
 package com.pas.cloud.base;
 
 import com.pas.cloud.demo.bean.User;
+import com.pas.cloud.sample.bean.CapitalDto;
+import com.pas.cloud.transaction.api.TransactionContext;
 import com.pas.cloud.util.DataSourceHolder;
 
 /**
@@ -35,6 +37,10 @@ public abstract class BaseServiceSupport<T> {
 		prepareDataSource();
 		return findById(id);
 	}
+	
+	
+	
+	
 	
 	abstract public void add(T t);
 	

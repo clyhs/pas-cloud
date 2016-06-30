@@ -22,9 +22,4 @@ public interface TransactionRepository {
 
     List<Transaction> findAllUnmodifiedSince(Date date);
 
-//    void addErrorTransaction(Transaction transaction);
-//
-//    void removeErrorTransaction(Transaction transaction);
-//
-//    Collection<Transaction> findAllErrorTransactions();
 }
