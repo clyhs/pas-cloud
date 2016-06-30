@@ -676,5 +676,6 @@
 		<module>pas-cloud-redis</module>
 		<module>pas-cloud-quartz</module>
 		<module>pas-cloud-kettle</module>
+		<module>pas-cloud-transaction</module>
 	</modules>
 </project>
