@@ -3,53 +3,48 @@
  */
 package com.pas.cloud.service.sample;
 
+import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.pas.cloud.api.sample.CapitalService;
+import com.pas.cloud.api.sample.OrderService;
 import com.pas.cloud.base.BaseServiceSupport;
-import com.pas.cloud.sample.bean.Capital;
-import com.pas.cloud.sample.bean.CapitalDto;
-import com.pas.cloud.sample.dao.CapitalDao;
-import com.pas.cloud.transaction.Compensable;
-import com.pas.cloud.transaction.api.TransactionContext;
+import com.pas.cloud.sample.bean.Order;
+import com.pas.cloud.sample.dao.OrderDao;
 import com.pas.cloud.util.DataSourceHolder;
+import com.pas.cloud.util.OrderFactory;
 
 /**
  * @author chenly 
  *
- * @version createtime:2016-6-30 下午2:36:24 
+ * @version createtime:2016-6-30 下午4:47:30 
  */
 @Service(version="1.0.0")
-public class CapitalServiceImpl extends BaseServiceSupport<Capital> implements
-		CapitalService {
+public class OrderServiceImpl extends BaseServiceSupport<Order> implements
+		OrderService {
 
 	@Autowired
-	private CapitalDao capitalDao;
+	private OrderDao orderDao;
+
 
 	/* (non-Javadoc)
 	 * @see com.pas.cloud.base.BaseServiceSupport#add(java.lang.Object)
 	 */
 	@Override
-	public void add(Capital t) {
+	public void add(Order t) {
 		// TODO Auto-generated method stub
-		capitalDao.save(t);
+		orderDao.insert(t);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.pas.cloud.base.BaseServiceSupport#findById(java.lang.Integer)
 	 */
 	@Override
-	public Capital findById(Integer id) {
+	public Order findById(Integer id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-
-	
-
-	
 
 }

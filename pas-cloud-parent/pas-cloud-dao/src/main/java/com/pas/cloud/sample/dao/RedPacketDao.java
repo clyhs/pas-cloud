@@ -4,6 +4,7 @@
 package com.pas.cloud.sample.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.pas.cloud.sample.bean.RedPacket;
@@ -14,7 +15,7 @@ import com.pas.cloud.sample.mapper.RedPacketMapper;
  *
  * @version createtime:2016-6-30 下午2:19:10 
  */
-@Service
+@Repository
 public class RedPacketDao {
 
 	@Autowired

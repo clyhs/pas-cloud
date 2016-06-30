@@ -3,6 +3,9 @@
  */
 package com.pas.cloud.api.sample;
 
+import com.pas.cloud.base.BaseService;
+import com.pas.cloud.demo.bean.User;
+import com.pas.cloud.sample.bean.Capital;
 import com.pas.cloud.sample.bean.CapitalDto;
 import com.pas.cloud.transaction.api.TransactionContext;
 
@@ -12,10 +15,7 @@ import com.pas.cloud.transaction.api.TransactionContext;
  *
  * @version createtime:2016-6-30 下午1:46:30 
  */
-public interface CapitalService {
+public interface CapitalService extends BaseService<Capital> {
 	
-	public void changeDataSource(String dataSource);
 
-	
-	public void record(CapitalDto capitalDto);
 }
