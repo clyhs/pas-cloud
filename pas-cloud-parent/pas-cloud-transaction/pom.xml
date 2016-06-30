@@ -22,6 +22,11 @@
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-transaction-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>redis.clients</groupId>
 				<artifactId>jedis</artifactId>
 				<version>${jedis.version}</version>
@@ -31,5 +36,6 @@
 	<modules>
 		<module>pas-cloud-transaction-api</module>
 		<module>pas-cloud-transaction-core</module>
+		<module>pas-cloud-transaction-spring</module>
 	</modules>
 </project>
