@@ -91,4 +91,10 @@ public class Order implements Serializable {
     public void cancelPayment() {
         this.status = "PAY_FAILED";
     }
+
+	public String getStatus() {
+		return status;
+	}
+    
+    
 }

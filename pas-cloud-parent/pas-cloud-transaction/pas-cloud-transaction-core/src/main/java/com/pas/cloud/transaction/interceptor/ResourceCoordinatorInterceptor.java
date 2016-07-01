@@ -69,6 +69,8 @@ public class ResourceCoordinatorInterceptor {
         String confirmMethodName = compensable.confirmMethod();
         String cancelMethodName = compensable.cancelMethod();
 
+        log.info("signature:"+signature.getName());
+        
         Transaction transaction = transactionConfigurator.getTransactionManager().getCurrentTransaction();
 
         TransactionXid xid = new TransactionXid(transaction.getXid().getGlobalTransactionId());

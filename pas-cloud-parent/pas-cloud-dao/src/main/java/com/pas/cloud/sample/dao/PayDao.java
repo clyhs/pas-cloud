@@ -57,6 +57,7 @@ public class PayDao {
         System.out.println("order confirm make payment called");
         order.confirm();
 
+        log.info("***************"+order.getStatus()+"*****************");
         orderDao.update(order);
     }
 
