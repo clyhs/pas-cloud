@@ -3,6 +3,9 @@
  */
 package com.pas.cloud.sample.dao;
 
+import java.util.List;
+
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,7 @@ import com.pas.cloud.sample.bean.Order;
 import com.pas.cloud.sample.bean.OrderLine;
 import com.pas.cloud.sample.mapper.OrderLineMapper;
 import com.pas.cloud.sample.mapper.OrderMapper;
+import com.pas.cloud.util.OrderFactory;
 
 /**
  * @author chenly 
@@ -36,6 +40,15 @@ public class OrderDao {
 
     public void update(Order order) {
     	orderMapper.update(order);
+    }
+    
+    
+    public Order createOrder(Integer payerUserId, Integer payeeUserId, List<Pair<Integer, Integer>> productQuantities) {
+        Order order = OrderFactory.buildOrder(payerUserId, payeeUserId, productQuantities);
+
+        orderMapper.insert(order);
+
+        return order;
     }
 
 }

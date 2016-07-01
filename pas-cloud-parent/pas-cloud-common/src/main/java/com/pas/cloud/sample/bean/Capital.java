@@ -10,13 +10,13 @@ import java.math.BigDecimal;
  */
 public class Capital {
 
-    private long id;
+    private Integer id;
 
-    private long userId;
+    private Integer userId;
 
     private BigDecimal balanceAmount;
 
-    public long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -25,11 +25,11 @@ public class Capital {
     }
 
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -53,7 +53,7 @@ public class CapitalServiceImpl extends BaseServiceSupport<Capital> implements
 	/* (non-Javadoc)
 	 * @see com.pas.cloud.api.sample.CapitalService#getByUserId(long)
 	 */
-	public Capital getByUserId(long id) {
+	public Capital getByUserId(Integer id) {
 		// TODO Auto-generated method stub
 		prepareDataSource();
 		return capitalDao.getByUserId(id);

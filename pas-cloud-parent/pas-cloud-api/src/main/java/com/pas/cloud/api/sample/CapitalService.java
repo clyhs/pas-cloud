@@ -7,7 +7,6 @@ import com.pas.cloud.base.BaseService;
 import com.pas.cloud.demo.bean.User;
 import com.pas.cloud.sample.bean.Capital;
 import com.pas.cloud.sample.bean.CapitalDto;
-import com.pas.cloud.transaction.api.TransactionContext;
 
 
 /**
@@ -18,5 +17,5 @@ import com.pas.cloud.transaction.api.TransactionContext;
 public interface CapitalService extends BaseService<Capital> {
 	
 
-	public Capital getByUserId(long id);
+	public Capital getByUserId(Integer id);
 }

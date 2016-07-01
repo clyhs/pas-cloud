@@ -18,9 +18,9 @@ public class RedPacketDto implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private long selfUserId;
+	private Integer selfUserId;
 
-    private long oppositeUserId;
+    private Integer oppositeUserId;
 
     private String orderTitle;
 
@@ -28,19 +28,19 @@ public class RedPacketDto implements Serializable {
 
     private BigDecimal amount;
 
-	public long getSelfUserId() {
+	public Integer getSelfUserId() {
 		return selfUserId;
 	}
 
-	public void setSelfUserId(long selfUserId) {
+	public void setSelfUserId(Integer selfUserId) {
 		this.selfUserId = selfUserId;
 	}
 
-	public long getOppositeUserId() {
+	public Integer getOppositeUserId() {
 		return oppositeUserId;
 	}
 
-	public void setOppositeUserId(long oppositeUserId) {
+	public void setOppositeUserId(Integer oppositeUserId) {
 		this.oppositeUserId = oppositeUserId;
 	}
 

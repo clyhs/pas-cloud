@@ -13,5 +13,5 @@ import com.pas.cloud.sample.bean.RedPacket;
  */
 public interface RedPacketMapper extends BaseMapper<RedPacket> {
 
-	public RedPacket getByUserId(Long id);
+	public RedPacket getByUserId(Integer id);
 }

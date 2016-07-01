@@ -4,7 +4,7 @@
 
     <resultMap id="result"
                type="com.pas.cloud.sample.bean.Capital">
-        <id property="id" javaType="java.lang.Long" column="CAPITAL_ACCOUNT_ID"/>
+        <id property="id" javaType="java.lang.Integer" column="CAPITAL_ACCOUNT_ID"/>
         <result property="balanceAmount" column="BALANCE_AMOUNT"/>
         <result property="userId" column="USER_ID"/>
     </resultMap>
@@ -25,7 +25,7 @@
 
     <select id="getByUserId" resultMap="result">
         <include refid="sql_select"/>
-        WHERE USER_ID = #{id,javaType=java.lang.Long,jdbcType=BIGINT}
+        WHERE USER_ID = #{id,javaType=java.lang.Integer,jdbcType=INTEGER}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">

@@ -12,11 +12,13 @@ import com.pas.cloud.sample.bean.OrderLine;
 public class OrderFactory {
 
 
-    public static Order buildOrder(long payerUserId, long payeeUserId, List<Pair<Long, Integer>> productQuantities) {
+    public static Order buildOrder(Integer payerUserId, Integer payeeUserId, List<Pair<Integer, Integer>> productQuantities) {
 
         Order order = new Order(payerUserId, payeeUserId);
 
-        for (Pair<Long, Integer> pair : productQuantities) {
+        
+        
+        for (Pair<Integer, Integer> pair : productQuantities) {
             order.addOrderLine(new OrderLine(pair.getLeft(), pair.getRight(), BigDecimal.valueOf(60)));
         }
 

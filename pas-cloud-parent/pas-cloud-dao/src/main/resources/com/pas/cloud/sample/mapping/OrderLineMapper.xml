@@ -4,7 +4,7 @@
 
     <resultMap id="result"
                type="com.pas.cloud.sample.bean.OrderLine">
-        <result property="id" javaType="java.lang.Long" column="ORDER_LINE_ID"/>
+        <result property="id" javaType="java.lang.Integer" column="ORDER_LINE_ID"/>
         <result property="productId" column="PRODUCT_ID"/>
         <result property="quantity" column="QUANTITY"/>
         <result property="unitPrice" column="UNIT_PRICE"/>
@@ -22,7 +22,7 @@
 
     <select id="getById" resultMap="result">
         <include refid="sql_select"/>
-        WHERE ORDER_LINE_ID = #{id,javaType=java.lang.Long,jdbcType=BIGINT}
+        WHERE ORDER_LINE_ID = #{id,javaType=java.lang.Integer,jdbcType=INTEGER}
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">

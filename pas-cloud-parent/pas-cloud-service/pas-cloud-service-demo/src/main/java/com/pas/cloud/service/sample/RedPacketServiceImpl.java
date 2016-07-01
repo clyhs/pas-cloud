@@ -52,7 +52,7 @@ public class RedPacketServiceImpl extends BaseServiceSupport<RedPacket>
 	/* (non-Javadoc)
 	 * @see com.pas.cloud.api.sample.RedPacketService#getByUserId(long)
 	 */
-	public RedPacket getByUserId(long id) {
+	public RedPacket getByUserId(Integer id) {
 		// TODO Auto-generated method stub
 		prepareDataSource();
 		return redPacketDao.getByUserId(id);

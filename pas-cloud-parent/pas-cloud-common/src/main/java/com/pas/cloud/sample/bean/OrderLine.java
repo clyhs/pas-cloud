@@ -6,9 +6,9 @@ import java.math.BigDecimal;
 public class OrderLine implements Serializable {
 
     private static final long serialVersionUID = 2300754647209250837L;
-    private long id;
+    private Integer id;
 
-    private long productId;
+    private Integer productId;
 
     private int quantity;
 
@@ -18,13 +18,13 @@ public class OrderLine implements Serializable {
 
     }
 
-    public OrderLine(Long productId, Integer quantity,BigDecimal unitPrice) {
+    public OrderLine(Integer productId, Integer quantity,BigDecimal unitPrice) {
         this.productId = productId;
         this.quantity = quantity;
         this.unitPrice = unitPrice;
     }
 
-    public long getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
@@ -40,7 +40,7 @@ public class OrderLine implements Serializable {
         return unitPrice.multiply(BigDecimal.valueOf(quantity));
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 }

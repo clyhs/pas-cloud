@@ -8,7 +8,6 @@ import com.pas.cloud.sample.bean.CapitalDto;
 import com.pas.cloud.sample.bean.Order;
 import com.pas.cloud.sample.bean.RedPacket;
 import com.pas.cloud.sample.bean.RedPacketDto;
-import com.pas.cloud.transaction.api.TransactionContext;
 
 /**
  * @author chenly 
@@ -18,5 +17,5 @@ import com.pas.cloud.transaction.api.TransactionContext;
 public interface RedPacketService  extends BaseService<RedPacket> {
 	
 
-	public RedPacket getByUserId(long id);
+	public RedPacket getByUserId(Integer id);
 }

@@ -10,11 +10,11 @@ import java.util.List;
 public class Order implements Serializable {
 
     private static final long serialVersionUID = -5908730245224893590L;
-    private long id;
+    private Integer id;
 
-    private long payerUserId;
+    private Integer payerUserId;
 
-    private long payeeUserId;
+    private Integer payeeUserId;
 
     private BigDecimal redPacketPayAmount;
 
@@ -26,16 +26,16 @@ public class Order implements Serializable {
 
     private List<OrderLine> orderLines = new ArrayList<OrderLine>();
 
-    public Order(long payerUserId, long payeeUserId) {
+    public Order(Integer payerUserId, Integer payeeUserId) {
         this.payerUserId = payerUserId;
         this.payeeUserId = payeeUserId;
     }
 
-    public long getPayerUserId() {
+    public Integer getPayerUserId() {
         return payerUserId;
     }
 
-    public long getPayeeUserId() {
+    public Integer getPayeeUserId() {
         return payeeUserId;
     }
 
@@ -80,7 +80,7 @@ public class Order implements Serializable {
         this.merchantOrderNo = merchantOrderNo;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 

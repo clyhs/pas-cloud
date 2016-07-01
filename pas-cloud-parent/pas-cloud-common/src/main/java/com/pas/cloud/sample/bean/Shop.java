@@ -3,15 +3,15 @@ package com.pas.cloud.sample.bean;
 
 public class Shop {
 
-    private long id;
+    private Integer id;
 
-    private long ownerUserId;
+    private Integer ownerUserId;
 
-    public long getOwnerUserId() {
+    public Integer getOwnerUserId() {
         return ownerUserId;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 }

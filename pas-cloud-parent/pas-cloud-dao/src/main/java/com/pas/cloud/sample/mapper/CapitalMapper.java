@@ -13,6 +13,6 @@ import com.pas.cloud.sample.bean.Capital;
  */
 public interface CapitalMapper extends BaseMapper<Capital> {
 	
-	public Capital getByUserId(Long id);
+	public Capital getByUserId(Integer id);
 
 }
