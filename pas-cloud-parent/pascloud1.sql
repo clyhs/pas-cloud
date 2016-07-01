@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: pascloud1
 Target Host: localhost
 Target Database: pascloud1
-Date: 2016/7/1 13:04:47
+Date: 2016/7/1 15:05:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `ord_order` (
   `STATUS` varchar(45) DEFAULT NULL,
   `MERCHANT_ORDER_NO` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`ORDER_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for ord_order_line
@@ -85,16 +85,17 @@ CREATE TABLE `tcc_transaction` (
   `VERSION` int(11) DEFAULT NULL,
   PRIMARY KEY (`TRANSACTION_ID`),
   UNIQUE KEY `UX_TX_BQ` (`GLOBAL_TX_ID`,`BRANCH_QUALIFIER`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `cap_capital_account` VALUES ('1', '1000', '1000');
-INSERT INTO `cap_capital_account` VALUES ('2', '1000', '2000');
+INSERT INTO `cap_capital_account` VALUES ('1', '950', '1000');
+INSERT INTO `cap_capital_account` VALUES ('2', '1050', '2000');
+INSERT INTO `ord_order` VALUES ('15', '1000', '2000', null, null, 'PAY_FAILED', null);
 INSERT INTO `ord_shop` VALUES ('1', '2000');
-INSERT INTO `red_red_packet_account` VALUES ('1', '100', '1000');
-INSERT INTO `red_red_packet_account` VALUES ('2', '100', '2000');
+INSERT INTO `red_red_packet_account` VALUES ('1', '90', '1000');
+INSERT INTO `red_red_packet_account` VALUES ('2', '120', '2000');
 INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
 INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
 INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
@@ -104,4 +105,4 @@ INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
 INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
 INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
 INSERT INTO `t_user` VALUES ('3', 'ccc', '3rerw3');
-INSERT INTO `tcc_transaction` VALUES ('2', '1Ó›hE’§', '0p2∂dB‹©`÷ã„”∆', '¨Ì', '3', '1', '6', '2016-07-01 11:50:56', '2016-07-01 12:04:00', '16');
+INSERT INTO `t_user` VALUES ('2', 'Â∞èÂº∫', '3rerw3');
