@@ -1,6 +1,7 @@
 package com.pas.cloud.transaction;
 
 
+import com.pas.cloud.transaction.interceptor.ResourceCoordinatorInterceptor;
 import com.pas.cloud.transaction.support.BeanFactoryAdapter;
 import com.pas.cloud.transaction.utils.StringUtils;
 
@@ -8,10 +9,14 @@ import com.pas.cloud.transaction.utils.StringUtils;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
+import org.apache.log4j.Logger;
+
 /**
  * Created by changmingxie on 10/30/15.
  */
 public class Terminator implements Serializable {
+	
+	private static Logger log = Logger.getLogger(Terminator.class);
 
     private static final long serialVersionUID = -164958655471605778L;
     private InvocationContext confirmInvocationContext;
@@ -25,10 +30,12 @@ public class Terminator implements Serializable {
 
     public void commit() {
 
+    	log.info("Terminator commit");
         invoke(confirmInvocationContext);
     }
 
     public void rollback() {
+    	log.info("Terminator rollback");
         invoke(cancelInvocationContext);
     }
 

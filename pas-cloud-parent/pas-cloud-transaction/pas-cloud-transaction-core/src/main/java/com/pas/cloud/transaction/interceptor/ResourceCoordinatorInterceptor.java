@@ -2,14 +2,11 @@ package com.pas.cloud.transaction.interceptor;
 
 import java.lang.reflect.Method;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
 
-import com.pas.cloud.transaction.Compensable;
-import com.pas.cloud.transaction.InvocationContext;
-import com.pas.cloud.transaction.Participant;
 import com.pas.cloud.transaction.*;
-import com.pas.cloud.transaction.TransactionRepository;
 import com.pas.cloud.transaction.api.TransactionContext;
 import com.pas.cloud.transaction.api.TransactionStatus;
 import com.pas.cloud.transaction.api.TransactionXid;
@@ -22,6 +19,8 @@ import com.pas.cloud.transaction.utils.ReflectionUtils;
  * Created by changmingxie on 11/8/15.
  */
 public class ResourceCoordinatorInterceptor {
+	
+	private static Logger log = Logger.getLogger(ResourceCoordinatorInterceptor.class);
 
     private TransactionConfigurator transactionConfigurator;
 
@@ -32,6 +31,8 @@ public class ResourceCoordinatorInterceptor {
     public void interceptTransactionContextMethod(ProceedingJoinPoint pjp) throws Throwable {
 
         Transaction transaction = transactionConfigurator.getTransactionManager().getCurrentTransaction();
+        
+        log.info("**interceptTransactionContextMethod**");
 
         if (transaction != null && transaction.getStatus().equals(TransactionStatus.TRYING)) {
 
@@ -41,6 +42,8 @@ public class ResourceCoordinatorInterceptor {
 
             MethodType methodType = CompensableMethodUtils.calculateMethodType(transactionContext, compensable != null ? true : false);
 
+            log.info("methodType:"+methodType+"**");
+            
             switch (methodType) {
                 case ROOT:
                     generateAndEnlistRootParticipant(pjp);
@@ -59,6 +62,7 @@ public class ResourceCoordinatorInterceptor {
 
     private Participant generateAndEnlistRootParticipant(ProceedingJoinPoint pjp) {
 
+    	log.info("generateAndEnlistRootParticipant*");
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
         Compensable compensable = getCompensable(pjp);
@@ -93,6 +97,7 @@ public class ResourceCoordinatorInterceptor {
 
     private Participant generateAndEnlistConsumerParticipant(ProceedingJoinPoint pjp) {
 
+    	log.info("generateAndEnlistConsumerParticipant*");
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
 
@@ -135,6 +140,7 @@ public class ResourceCoordinatorInterceptor {
 
     private Participant generateAndEnlistProviderParticipant(ProceedingJoinPoint pjp) {
 
+    	log.info("generateAndEnlistProviderParticipant*");
         MethodSignature signature = (MethodSignature) pjp.getSignature();
         Method method = signature.getMethod();
 
