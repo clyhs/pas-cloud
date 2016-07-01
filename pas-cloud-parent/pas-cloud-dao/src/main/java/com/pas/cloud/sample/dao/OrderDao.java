@@ -6,6 +6,7 @@ package com.pas.cloud.sample.dao;
 import java.util.List;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,8 @@ import com.pas.cloud.util.OrderFactory;
  */
 @Repository
 public class OrderDao {
+	
+	private static Logger log = Logger.getLogger(OrderDao.class);
 	
 	@Autowired
 	private OrderLineMapper orderLineMapper;
@@ -46,8 +49,10 @@ public class OrderDao {
     public Order createOrder(Integer payerUserId, Integer payeeUserId, List<Pair<Integer, Integer>> productQuantities) {
         Order order = OrderFactory.buildOrder(payerUserId, payeeUserId, productQuantities);
 
+        log.info("***************订单入库*****************");
         orderMapper.insert(order);
 
+        log.info("***************订单入库完毕*****************");
         return order;
     }
 

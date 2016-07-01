@@ -67,7 +67,7 @@ public class DemoController {
 		//Integer dbtype = Integer.valueOf(request.getParameter("dbtype"));
 		User u = new User();
 		u.setUserId(userId);
-		u.setUsername("ccc");
+		u.setUsername("小强");
 		u.setPassword("3rerw3");
 		userBusiness.insert(u);
 		

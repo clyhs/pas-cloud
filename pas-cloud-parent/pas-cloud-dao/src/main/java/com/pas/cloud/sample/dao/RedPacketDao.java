@@ -3,6 +3,7 @@
  */
 package com.pas.cloud.sample.dao;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ import com.pas.cloud.transaction.api.TransactionContext;
  */
 @Repository
 public class RedPacketDao {
+	
+	private static Logger log = Logger.getLogger(RedPacketDao.class);
 
 	@Autowired
 	private RedPacketMapper redPacketMapper;
@@ -37,14 +40,20 @@ public class RedPacketDao {
 	@Compensable(confirmMethod = "confirmRecord", cancelMethod = "cancelRecord")
 	public void record(TransactionContext transactionContext, RedPacketDto redPacketDto){
 		System.out.println("capital try record called");
+		log.info("***************RedPacketDao record*****************");
+		log.info("***************redPacket getByUserId*****************");
 		RedPacket redPacket = redPacketMapper.getByUserId(redPacketDto.getSelfUserId());
+		log.info("***************redPacket getByUserId end*****************");
 		redPacket.transferFrom(redPacketDto.getAmount()) ;
+		log.info("***************Capital redPacketMapper update *****************");
 		redPacketMapper.update(redPacket);
+		log.info("***************Capital redPacketMapper update end*****************");
 	}
 	
 	public void confirmRecord(TransactionContext transactionContext, RedPacketDto redPacketDto) {
         System.out.println("capital confirm record called");
 
+        log.info("***************confirmRecord record*****************");
         RedPacket redPacket = redPacketMapper.getByUserId(redPacketDto.getOppositeUserId());
 
         redPacket.transferTo(redPacketDto.getAmount());
@@ -55,6 +64,7 @@ public class RedPacketDao {
     public void cancelRecord(TransactionContext transactionContext, RedPacketDto redPacketDto) {
         System.out.println("capital cancel record called");
 
+        log.info("***************cancelRecord record*****************");
         RedPacket redPacket = redPacketMapper.getByUserId(redPacketDto.getSelfUserId());
 
         redPacket.cancelTransfer(redPacketDto.getAmount());

@@ -15,9 +15,20 @@
 			<param name="ConversionPattern" value="[%d{MMdd HH:mm:ss SSS\} %-5p] [%t] %c{3\} - %m%n" />
 		</layout>
 	</appender>
+	<appender name="pascloudinfo" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="../logs/pascloud-service-demo-all.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{MMdd HH:mm:ss SSS\} %-5p] [%t] %c{3\} - %m%n" />
+		</layout>
+	</appender>
 	<logger name="com.alibaba.dubbo" additivity="false">
 		<priority value="info" />
 		<appender-ref ref="dubboAppender" />
+	</logger>
+	<logger name="com.pas.cloud" additivity="false">
+		<priority value="info" />
+		<appender-ref ref="pascloudinfo" />
 	</logger>
 	<root>
 		<level value="INFO" />

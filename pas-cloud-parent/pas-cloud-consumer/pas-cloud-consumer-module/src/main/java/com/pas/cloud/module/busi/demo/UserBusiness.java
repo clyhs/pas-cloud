@@ -27,7 +27,7 @@ public class UserBusiness extends BaseBusinessSupport<User> implements IUserBusi
 	@Override
 	protected void changeDataSource() {
 		// TODO Auto-generated method stub
-		userService.changeDataSource("dataSource_1");
+		userService.changeDataSource("dataSource_0");
 	}
 
 	@Override

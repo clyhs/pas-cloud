@@ -6,6 +6,7 @@ package com.pas.cloud.sample.dao;
 
 import java.math.BigDecimal;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,6 +23,7 @@ import com.pas.cloud.transaction.Compensable;
 @Repository
 public class PayDao {
 
+	private static Logger log = Logger.getLogger(PayDao.class);
 	@Autowired
 	private CapitalDao capitalDao;
 	
@@ -36,11 +38,18 @@ public class PayDao {
     public void makePayment(Order order, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
         System.out.println("order try make payment called");
 
+        log.info("***************开始付款...*****************");
         order.pay(redPacketPayAmount, capitalPayAmount);
+        log.info("***************更新订单金额入库：红包、金额*****************");
         orderDao.update(order);
+        log.info("***************订单金额入库更新成功*****************");
+        
 
+        log.info("***************开始记录金额buildCapitalDto(order)*****************");
         capitalDao.record(null, buildCapitalDto(order));
+        log.info("***************开始记录红包buildRedPacketDto(order)*****************");
         redPacketDao.record(null, buildRedPacketDto(order));
+        log.info("***************记录成功*****************");
     }
 
     public void confirmMakePayment(Order order, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {

@@ -6,6 +6,8 @@ package com.pas.cloud.transaction.repository;
 import javax.sql.DataSource;
 import javax.transaction.xa.Xid;
 
+import org.apache.log4j.Logger;
+
 import com.pas.cloud.transaction.Transaction;
 import com.pas.cloud.transaction.utils.CollectionUtils;
 import com.pas.cloud.transaction.utils.SerializationUtils;
@@ -19,6 +21,8 @@ import java.util.List;
  * Created by changmingxie on 10/30/15.
  */
 public class JdbcTransactionRepository extends CachableTransactionRepository {
+	
+	private static Logger log = Logger.getLogger(JdbcTransactionRepository.class);
 
     private DataSource dataSource;
 
@@ -44,12 +48,14 @@ public class JdbcTransactionRepository extends CachableTransactionRepository {
                     "VALUES(?,?,?,?,?,?,?,?,?)");
 
             stmt = connection.prepareStatement(builder.toString());
+            
+            log.info(builder.toString());
 
-//            stmt.setString(1, transaction.getXid().getGlobalTransactionId().toString());
-//            stmt.setString(2, transaction.getXid().getBranchQualifier().toString());
+            stmt.setString(1, transaction.getXid().getGlobalTransactionId().toString());
+            stmt.setString(2, transaction.getXid().getBranchQualifier().toString());
 
-            stmt.setBytes(1, transaction.getXid().getGlobalTransactionId());
-            stmt.setBytes(2, transaction.getXid().getBranchQualifier());
+//            stmt.setBytes(1, transaction.getXid().getGlobalTransactionId());
+//            stmt.setBytes(2, transaction.getXid().getBranchQualifier());
 
             stmt.setInt(3, transaction.getTransactionType().getId());
             stmt.setBytes(4, SerializationUtils.serialize(transaction));
@@ -84,15 +90,21 @@ public class JdbcTransactionRepository extends CachableTransactionRepository {
             builder.append("UPDATE TCC_TRANSACTION SET " +
                     "CONTENT = ?,STATUS = ?,LAST_UPDATE_TIME = ?, RETRIED_COUNT = ?,VERSION = VERSION+1 WHERE GLOBAL_TX_ID = ? AND BRANCH_QUALIFIER = ? AND VERSION = ?");
 
+            log.info(builder.toString());
+            
             stmt = connection.prepareStatement(builder.toString());
+            
+            log.info("xid-gid:"+transaction.getXid().getGlobalTransactionId().toString());
+            log.info("xid-qua:"+transaction.getXid().getBranchQualifier().toString());
+            log.info("xid-version:"+transaction.getVersion());
 
             stmt.setBytes(1, SerializationUtils.serialize(transaction));
             stmt.setInt(2, transaction.getStatus().getId());
             stmt.setTimestamp(3, new Timestamp(transaction.getLastUpdateTime().getTime()));
 
             stmt.setInt(4, transaction.getRetriedCount());
-            stmt.setBytes(5, transaction.getXid().getGlobalTransactionId());
-            stmt.setBytes(6, transaction.getXid().getBranchQualifier());
+            stmt.setString(5, transaction.getXid().getGlobalTransactionId().toString());
+            stmt.setString(6, transaction.getXid().getBranchQualifier().toString());
             stmt.setLong(7, transaction.getVersion() - 1);
 
             int result = stmt.executeUpdate();
@@ -100,6 +112,7 @@ public class JdbcTransactionRepository extends CachableTransactionRepository {
             return result;
 
         } catch (Throwable e) {
+        	e.printStackTrace();
             throw new TransactionIOException(e);
         } finally {
             closeStatement(stmt);
@@ -207,8 +220,8 @@ public class JdbcTransactionRepository extends CachableTransactionRepository {
                 int i = 0;
 
                 for (Xid xid : xids) {
-                    stmt.setBytes(++i, xid.getGlobalTransactionId());
-                    stmt.setBytes(++i, xid.getBranchQualifier());
+                    stmt.setString(++i, xid.getGlobalTransactionId().toString());
+                    stmt.setString(++i, xid.getBranchQualifier().toString());
                 }
             }
 
