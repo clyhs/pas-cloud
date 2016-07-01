@@ -8,6 +8,9 @@ import com.pas.cloud.transaction.TransactionRepository;
 import com.pas.cloud.transaction.api.TransactionXid;
 
 import javax.transaction.xa.Xid;
+
+import org.apache.log4j.Logger;
+
 import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
@@ -18,32 +21,48 @@ import java.util.concurrent.TimeUnit;
  */
 public abstract class CachableTransactionRepository implements TransactionRepository {
 
+	private static Logger log = Logger.getLogger(CachableTransactionRepository.class);
+	
     private int expireDuration = 300;
 
     private Cache<Xid, Transaction> transactionXidCompensableTransactionCache;
 
     public int create(Transaction transaction) {
         int result = doCreate(transaction);
+        
+        log.info("**********create Transaction create************");
+        
         if (result > 0) {
+        	log.info("**********create Transaction success************");
+        	log.info("**********create Transaction puttocache************");
             putToCache(transaction);
+            log.info("**********create Transaction puttocache end************");
         }
         return result;
     }
 
     public int update(Transaction transaction) {
         int result = doUpdate(transaction);
+        log.info("**********update Transaction update************");
         if (result > 0) {
+        	log.info("**********update Transaction success************");
+        	log.info("**********update Transaction puttocache************");
             putToCache(transaction);
+            log.info("**********update Transaction puttocache end************");
         } else {
-            throw new ConcurrentModificationException();
+            //throw new ConcurrentModificationException();
         }
         return result;
     }
 
     public int delete(Transaction transaction) {
         int result = doDelete(transaction);
+        log.info("**********delete Transaction update************");
         if (result > 0) {
+        	log.info("**********delete Transaction success************");
+        	log.info("**********delete Transaction removecache************");
             removeFromCache(transaction);
+            log.info("**********delete Transaction removecache end************");
         }
         return result;
     }
