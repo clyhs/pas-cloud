@@ -42,6 +42,8 @@ public class Terminator implements Serializable {
     private Object invoke(InvocationContext invocationContext) {
 
         if (StringUtils.isNotEmpty(invocationContext.getMethodName())) {
+        	
+        	log.info("MethodName:"+invocationContext.getMethodName());
 
             try {
                 Object target = BeanFactoryAdapter.getBean(invocationContext.getTargetClass());
@@ -51,12 +53,16 @@ public class Terminator implements Serializable {
                 }
 
                 Method method = null;
+                
+                log.info("target:"+target.toString());
 
                 method = target.getClass().getMethod(invocationContext.getMethodName(), invocationContext.getParameterTypes());
 
+                
                 return method.invoke(target, invocationContext.getArgs());
 
             } catch (Exception e) {
+            	log.info("Terminator exception:"+e.getMessage());
                 throw new SystemException(e);
             }
         }

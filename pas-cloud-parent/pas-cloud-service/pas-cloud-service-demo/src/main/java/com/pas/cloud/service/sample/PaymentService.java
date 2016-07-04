@@ -1,55 +1,48 @@
 /**
  * 
  */
-package com.pas.cloud.sample.dao;
-
+package com.pas.cloud.service.sample;
 
 import java.math.BigDecimal;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pas.cloud.api.sample.CapitalService;
+import com.pas.cloud.api.sample.RedPacketService;
 import com.pas.cloud.sample.bean.CapitalDto;
 import com.pas.cloud.sample.bean.Order;
 import com.pas.cloud.sample.bean.RedPacketDto;
+import com.pas.cloud.sample.dao.OrderDao;
 import com.pas.cloud.transaction.Compensable;
 
 /**
  * @author chenly 
  *
- * @version createtime:2016-7-1 上午9:35:13 
+ * @version createtime:2016-7-4 下午2:06:14 
  */
-@Repository
-public class PayDao {
-
-	private static Logger log = Logger.getLogger(PayDao.class);
-	@Autowired
-	private CapitalDao capitalDao;
+@Service
+public class PaymentService {
 	
-	@Autowired
-	private RedPacketDao redPacketDao;
+	@Reference(version="1.0.0")
+	private CapitalService capitalService;
+	
+	@Reference(version="1.0.0")
+	private RedPacketService redPacketService;
 	
 	@Autowired
 	private OrderDao orderDao;
-	
 	
 	@Compensable(confirmMethod = "confirmMakePayment",cancelMethod = "cancelMakePayment")
     public void makePayment(Order order, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
         System.out.println("order try make payment called");
 
-        log.info("***************开始付款...*****************");
         order.pay(redPacketPayAmount, capitalPayAmount);
-        log.info("***************更新订单金额入库：红包、金额*****************");
         orderDao.update(order);
-        log.info("***************订单金额入库更新成功*****************");
-        
 
-        log.info("***************开始记录金额buildCapitalDto(order)*****************");
-        capitalDao.record(null, buildCapitalDto(order));
-        log.info("***************开始记录红包buildRedPacketDto(order)*****************");
-        redPacketDao.record(null, buildRedPacketDto(order));
-        log.info("***************记录成功*****************");
+        capitalService.record(null, buildCapitalDto(order));
+        redPacketService.record(null, buildRedPacketDto(order));
     }
 
     public void confirmMakePayment(Order order, BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
@@ -57,7 +50,6 @@ public class PayDao {
         System.out.println("order confirm make payment called");
         order.confirm();
 
-        log.info("***************"+order.getStatus()+"*****************");
         orderDao.update(order);
     }
 
@@ -69,9 +61,9 @@ public class PayDao {
 
         orderDao.update(order);
     }
-	
-	
-	private CapitalDto buildCapitalDto(Order order) {
+
+
+    private CapitalDto buildCapitalDto(Order order) {
 
         CapitalDto tradeOrderDto = new CapitalDto();
         tradeOrderDto.setAmount(order.getCapitalPayAmount());
@@ -93,4 +85,5 @@ public class PayDao {
 
         return tradeOrderDto;
     }
+
 }

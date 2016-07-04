@@ -16,7 +16,6 @@ import com.pas.cloud.api.sample.PlaceOrderService;
 import com.pas.cloud.sample.bean.Order;
 import com.pas.cloud.sample.bean.Shop;
 import com.pas.cloud.sample.dao.OrderDao;
-import com.pas.cloud.sample.dao.PayDao;
 import com.pas.cloud.sample.dao.ShopDao;
 import com.pas.cloud.sample.request.PlaceOrderRequest;
 import com.pas.cloud.util.DataSourceHolder;
@@ -26,7 +25,7 @@ import com.pas.cloud.util.DataSourceHolder;
  *
  * @version createtime:2016-7-1 上午9:53:53 
  */
-@Service(version="1.0.0",retries=0)
+@Service(version="1.0.0",retries=0,timeout=3600)
 public class PlaceOrderServiceImpl implements PlaceOrderService {
 	
 	private static Logger log = Logger.getLogger(PlaceOrderServiceImpl.class);
@@ -38,7 +37,7 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	private OrderDao orderDao;
 	
 	@Autowired
-	private PayDao payDao;
+	private PaymentService paymentService;
 
 	/* (non-Javadoc)
 	 * @see com.pas.cloud.api.sample.PlaceOrderService#changeDataSource(java.lang.String)
@@ -60,7 +59,7 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 		log.info("***************查询SHOPID完毕*****************");
 		Order order = orderDao.createOrder(payerUserId, shop.getOwnerUserId(), productQuantities);
 		log.info("***************付款开始*****************");
-		payDao.makePayment(order, redPacketPayAmount, order.getTotalAmount().subtract(redPacketPayAmount));
+		paymentService.makePayment(order, redPacketPayAmount, order.getTotalAmount().subtract(redPacketPayAmount));
 		
 	}
 	

@@ -35,6 +35,7 @@ public class RecoverScheduledJob {
             cronTrigger.setBeanName("transactionRecoveryCronTrigger");
 
             cronTrigger.setCronExpression(transactionConfigurator.getRecoverConfig().getCronExpression());
+            
             cronTrigger.afterPropertiesSet();
 
             scheduler.scheduleJob((JobDetail) jobDetail.getObject(), cronTrigger);

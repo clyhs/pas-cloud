@@ -89,6 +89,11 @@
 			</dependency>
 			<dependency>
 				<groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-transaction-core</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.pascloud</groupId>
 				<artifactId>pas-cloud-transaction-spring</artifactId>
 				<version>${project.version}</version>
 			</dependency>
@@ -678,6 +683,8 @@
 			<artifactId>tomcat-embed-logging-juli</artifactId>
 		</dependency>
 	</dependencies>
+
+
 
 	<modules>
 		<module>pas-cloud-common</module>

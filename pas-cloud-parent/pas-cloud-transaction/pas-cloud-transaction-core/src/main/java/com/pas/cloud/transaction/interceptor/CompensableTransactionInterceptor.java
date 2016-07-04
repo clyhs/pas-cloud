@@ -33,6 +33,8 @@ public class CompensableTransactionInterceptor {
         TransactionContext transactionContext = CompensableMethodUtils.getTransactionContextFromArgs(pjp.getArgs());
 
         MethodType methodType = CompensableMethodUtils.calculateMethodType(transactionContext, true);
+        
+        logger.info("methodType:"+methodType.toString());
 
         switch (methodType) {
             case ROOT:
@@ -50,9 +52,11 @@ public class CompensableTransactionInterceptor {
 
         transactionConfigurator.getTransactionManager().begin();
 
+        
         try {
             pjp.proceed();
         } catch (ConcurrentModificationException e) {
+        	logger.info("rootMethodProceed:ConcurrentModificationException:"+e.getMessage());
             throw e; //do not rollback, waiting for recovery job
         } catch (Throwable tryingException) {
             logger.warn("compensable transaction trying failed.", tryingException);
@@ -71,6 +75,7 @@ public class CompensableTransactionInterceptor {
 
     private void providerMethodProceed(ProceedingJoinPoint pjp, TransactionContext transactionContext) throws Throwable {
 
+    	logger.info("******providerMethodProceed tran status:"+transactionContext.getStatus());
         switch (TransactionStatus.valueOf(transactionContext.getStatus())) {
             case TRYING:
                 transactionConfigurator.getTransactionManager().propagationNewBegin(transactionContext);

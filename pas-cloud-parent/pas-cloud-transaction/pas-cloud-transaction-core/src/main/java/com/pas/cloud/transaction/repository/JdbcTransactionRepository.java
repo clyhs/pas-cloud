@@ -117,6 +117,7 @@ public class JdbcTransactionRepository extends CachableTransactionRepository {
             return result;
 
         } catch (Throwable e) {
+        	log.info("doUpdate:"+e.getMessage());
         	e.printStackTrace();
             throw new TransactionIOException(e);
         } finally {

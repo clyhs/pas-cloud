@@ -21,7 +21,7 @@ import com.pas.cloud.module.intf.demo.IPlaceOrderBusiness;
 @Service
 public class PlaceOrderBusiness implements IPlaceOrderBusiness {
 	
-	@Reference(version="1.0.0")
+	@Reference(version="1.0.0",retries=0,timeout=3600)
 	private PlaceOrderService placeOrderService;
 
 	/* (non-Javadoc)

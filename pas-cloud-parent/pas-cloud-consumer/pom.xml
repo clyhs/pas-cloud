@@ -20,6 +20,21 @@
 		<dependency>
 			<groupId>com.pascloud</groupId>
 			<artifactId>pas-cloud-api</artifactId>
+			<exclusions>
+			    <exclusion>
+			        <groupId>com.pascloud</groupId>
+	                <artifactId>pas-cloud-transaction-spring</artifactId>
+			    </exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.pascloud</groupId>
+            <artifactId>pas-cloud-transaction-api</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>com.pascloud</groupId>
+            <artifactId>pas-cloud-transaction-core</artifactId>
 		</dependency>
 
 
