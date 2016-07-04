@@ -4,26 +4,32 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>pas-cloud-consumer</artifactId>
+		<artifactId>pas-cloud-parent</artifactId>
 		<groupId>com.pascloud</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<groupId>com.pascloud</groupId>
-	<artifactId>pas-cloud-consumer-module</artifactId>
+	<artifactId>pas-cloud-activemq</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pas-cloud-consumer-module</name>
+	<name>pas-cloud-activemq</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>com.pascloud</groupId>
-			<artifactId>pas-cloud-redis</artifactId>
+	    <dependency>
+	        <groupId>org.springframework</groupId>
+		    <artifactId>spring-jms</artifactId>
+	    </dependency>
+	    <dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+			<version>5.9.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.pascloud</groupId>
-			<artifactId>pas-cloud-activemq</artifactId>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-jaas</artifactId>
+			<version>5.9.1</version>
 		</dependency>
 	</dependencies>
 </project>

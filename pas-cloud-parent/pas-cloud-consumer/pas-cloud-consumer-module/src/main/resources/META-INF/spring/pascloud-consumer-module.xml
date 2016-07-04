@@ -28,10 +28,10 @@
     <dubbo:registry address="${zookeeper.host}:${zookeeper.port}"/>
     
     <dubbo:annotation package="com.pas.cloud.module" />
-    
+    <!--  
     <dubbo:reference id="demoService" interface="com.pas.cloud.api.demo.DemoService" version="1.0.0"/>
     
-    <dubbo:reference id="userService" interface="com.pas.cloud.api.demo.UserService"/>
+    <dubbo:reference id="userService" interface="com.pas.cloud.api.demo.UserService"/>-->
     
     
 </beans>

@@ -18,7 +18,7 @@ import com.pas.cloud.module.intf.demo.IUserBusiness;
 @Service
 public class UserBusiness extends BaseBusinessSupport<User> implements IUserBusiness {
 	
-	@Autowired
+	//@Autowired
 	private UserService userService;
 	
 	

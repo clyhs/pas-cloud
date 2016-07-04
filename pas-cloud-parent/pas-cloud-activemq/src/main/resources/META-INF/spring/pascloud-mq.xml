@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:hdp="http://www.springframework.org/schema/hadoop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       http://www.springframework.org/schema/mvc 
+       http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       http://www.springframework.org/schema/util 
+       http://www.springframework.org/schema/util/spring-util-3.2.xsd
+       http://www.springframework.org/schema/cache 
+       http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
+
+    <bean id="jmsConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+		<property name="connectionFactory">
+			<bean class="org.apache.activemq.ActiveMQConnectionFactory">
+				<property name="brokerURL" value="tcp://localhost:61616" />
+				<property name="closeTimeout" value="60000" />
+
+				<property name="userName" value="admin" />
+				<property name="password" value="admin" />
+				<!--<property name="optimizeAcknowledge" value="true" /> -->
+				<property name="optimizedAckScheduledAckInterval" value="10000" />
+			</bean>
+		</property>
+	</bean>
+	
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="deliveryMode" value="2" />
+		<property name="defaultDestination" ref="queueDestination" />
+	</bean>
+	
+    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg index="0" value="test" />
+	</bean>
+	
+    <bean id="queueMessageListener" class="com.pas.cloud.activemq.PasCloudMQListener"/>
+    
+    <bean id="queueContainer"
+		class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="connectionFactory" ref="jmsConnectionFactory"></property>
+		<property name="destination" ref="queueDestination"></property>
+		<property name="messageListener" ref="queueMessageListener"></property>
+	</bean>
+	
+</beans>
+
+
+

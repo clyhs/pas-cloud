@@ -98,6 +98,12 @@
 				<version>${project.version}</version>
 			</dependency>
 
+			<dependency>
+				<groupId>com.pascloud</groupId>
+				<artifactId>pas-cloud-activemq</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
 
 
 			<!-- spring 3.2 -->
@@ -164,6 +170,13 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+
+			<dependency>
+
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jms</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
 
@@ -696,5 +709,6 @@
 		<module>pas-cloud-quartz</module>
 		<module>pas-cloud-kettle</module>
 		<module>pas-cloud-transaction</module>
+		<module>pas-cloud-activemq</module>
 	</modules>
 </project>
