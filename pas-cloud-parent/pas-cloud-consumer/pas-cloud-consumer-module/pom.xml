@@ -21,9 +21,11 @@
 			<groupId>com.pascloud</groupId>
 			<artifactId>pas-cloud-redis</artifactId>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>com.pascloud</groupId>
 			<artifactId>pas-cloud-activemq</artifactId>
 		</dependency>
+		-->
 	</dependencies>
 </project>

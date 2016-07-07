@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pas.cloud.activemq.PasCloudMQProducer;
+//import com.pas.cloud.activemq.PasCloudMQProducer;
 import com.pas.cloud.api.demo.DemoService;
 import com.pas.cloud.api.demo.HelloService;
 import com.pas.cloud.api.demo.UserService;
@@ -46,8 +46,8 @@ public class DemoController {
 	@Autowired
 	private Producer producer;
 	
-	@Autowired
-	private PasCloudMQProducer pasCloadMQProducer;
+	//@Autowired
+	//private PasCloudMQProducer pasCloadMQProducer;
 	
 	@RequestMapping("/module/demo/index")
 	@ResponseBody
@@ -89,7 +89,7 @@ public class DemoController {
 	@ResponseBody
 	public String send(HttpServletRequest request,HttpServletResponse response){
 		
-		pasCloadMQProducer.send("hello world");
+		//pasCloadMQProducer.send("hello world");
 		return "ok";
 	}
 	
