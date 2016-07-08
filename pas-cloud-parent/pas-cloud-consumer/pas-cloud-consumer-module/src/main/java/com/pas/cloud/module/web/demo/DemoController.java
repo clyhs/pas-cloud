@@ -6,10 +6,13 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.PageInfo;
 //import com.pas.cloud.activemq.PasCloudMQProducer;
 import com.pas.cloud.api.demo.DemoService;
 import com.pas.cloud.api.demo.HelloService;
@@ -93,6 +96,11 @@ public class DemoController {
 		return "ok";
 	}
 	
+	@RequestMapping(value="/module/user/select/{p}",method=RequestMethod.GET)
+	@ResponseBody
+	public PageInfo<User> select(@PathVariable int p){
+		return userBusiness.select(null, 1, 2);
+	}
 	
 
 }

@@ -1,8 +1,12 @@
 package com.pas.cloud.service.demo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.github.pagehelper.PageInfo;
 import com.pas.cloud.anno.PasDataSource;
 import com.pas.cloud.api.demo.UserService;
 import com.pas.cloud.base.BaseServiceSupport;
@@ -19,26 +23,36 @@ import com.pas.cloud.util.DataSourceHolder;
  *
  * @version createtime:2016-6-22 下午4:00:00
  */
+@Service(version="1.0.0")
 public class UserServiceImpl extends BaseServiceSupport<User> implements UserService {
 	
+	@Autowired
 	private UserDao userDao;
 
-	public UserDao getUserDao() {
-		return userDao;
-	}
-	public void setUserDao(UserDao userDao) {
-		this.userDao = userDao;
-	}
+	
 	
 	@Override
 	public void add(User u) {
-		// TODO Auto-generated method stub
-		userDao.insert(u);
 	}
 	@Override
 	public User findById(Integer userId) {
 		// TODO Auto-generated method stub
-		return userDao.getById(userId);
+		User u = new User();
+		u.setUserId(userId);
+		return userDao.selectByPrimaryKey(u);
+	}
+	/* (non-Javadoc)
+	 * @see com.pas.cloud.api.demo.UserService#select(com.pas.cloud.demo.bean.User, int, int)
+	 */
+	public PageInfo<User> select(User t, int pageNum, int pageSize) {
+		// TODO Auto-generated method stub
+		List<User> alist = new ArrayList<User>();
+		alist = userDao.select(t, pageNum, pageSize);
+		PageInfo<User> pageInfo = new PageInfo<User>();
+		pageInfo.setList(alist);
+		Long nTotal = userDao.selectCount(t);
+		pageInfo.setTotal(nTotal);
+		return pageInfo;
 	}
 	
 	

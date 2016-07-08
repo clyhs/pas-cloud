@@ -1,5 +1,6 @@
 package com.pas.cloud.module.intf.demo;
 
+import com.github.pagehelper.PageInfo;
 import com.pas.cloud.demo.bean.User;
 
 /**
@@ -11,5 +12,7 @@ import com.pas.cloud.demo.bean.User;
 public interface IUserBusiness {
 	
 	public void insert(User u);
+	
+	public PageInfo<User> select(User t,int pageNum,int pageSize);
 
 }

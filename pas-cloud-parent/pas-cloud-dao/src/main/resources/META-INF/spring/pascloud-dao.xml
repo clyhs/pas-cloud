@@ -25,6 +25,7 @@
 	<!-- sharing jdbc -->
 	<bean name="dataSource_0" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="${db1.url}" />
 		<property name="username" value="${db1.username}" />
 		<property name="password" value="${db1.password}" />
@@ -47,6 +48,7 @@
 	</bean>
 	<bean name="dataSource_1" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="${db2.url}" />
 		<property name="username" value="${db2.username}" />
 		<property name="password" value="${db2.password}" />
@@ -110,8 +112,20 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
 			value="classpath*:com/pas/cloud/**/mapping/*Mapper.xml" />
+		<property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
 	</bean>
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.pas.cloud.**.mapper" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>

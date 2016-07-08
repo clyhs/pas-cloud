@@ -25,10 +25,10 @@ import com.pas.cloud.transaction.Compensable;
 @Service
 public class PaymentService {
 	
-	@Reference(version="1.0.0")
+	//@Reference(version="1.0.0")
 	private CapitalService capitalService;
 	
-	@Reference(version="1.0.0")
+	//@Reference(version="1.0.0")
 	private RedPacketService redPacketService;
 	
 	@Autowired

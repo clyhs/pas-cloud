@@ -1,5 +1,6 @@
 package com.pas.cloud.api.demo;
 
+import com.github.pagehelper.PageInfo;
 import com.pas.cloud.base.BaseService;
 import com.pas.cloud.demo.bean.User;
 
@@ -11,6 +12,6 @@ import com.pas.cloud.demo.bean.User;
  */
 public interface UserService extends BaseService<User>{
 	
-	
+	public PageInfo<User> select(User t,int pageNum,int pageSize);
 
 }
