@@ -13,5 +13,7 @@ import com.pas.cloud.demo.bean.User;
 public interface UserService extends BaseService<User>{
 	
 	public PageInfo<User> select(User t,int pageNum,int pageSize);
+	
+	public User getUser(User u);
 
 }

@@ -3,6 +3,9 @@ package com.pas.cloud.module.web.demo;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -51,8 +54,20 @@ public class DemoController {
 	
 	//@Autowired
 	//private PasCloudMQProducer pasCloadMQProducer;
+	@RequestMapping("/login")
+	public String login(){
+		
+		Subject subject = SecurityUtils.getSubject();
+		if (!subject.isAuthenticated()) {
+			UsernamePasswordToken token = new UsernamePasswordToken("admin", "123456");
+			token.setRememberMe(true);
+			subject.login(token);
+		}
+		
+		return "redirect:/module/demo/index.json";
+	}
 	
-	@RequestMapping("/module/demo/index")
+	@RequestMapping("/module/demo/index.json")
 	@ResponseBody
 	public String index(){
 		//dataSource_1

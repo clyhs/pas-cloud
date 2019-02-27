@@ -46,6 +46,14 @@ public class UserBusiness extends BaseBusinessSupport<User> implements IUserBusi
 		return userService.select(t, pageNum, pageSize);
 	}
 
+	@Override
+	public User getUser(String username) {
+		// TODO Auto-generated method stub
+		User u = new User();
+		u.setUsername(username);
+		return userService.getUser(u);
+	}
+
 	
 	
 

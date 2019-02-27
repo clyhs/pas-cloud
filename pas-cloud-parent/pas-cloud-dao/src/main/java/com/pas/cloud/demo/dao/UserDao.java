@@ -35,4 +35,8 @@ public class UserDao {
 	public Long selectCount(User t){
 		return (long) userMapper.selectCount(t);
 	}
+	
+	public User getUser(User t){
+		return userMapper.selectOne(t);
+	}
 }

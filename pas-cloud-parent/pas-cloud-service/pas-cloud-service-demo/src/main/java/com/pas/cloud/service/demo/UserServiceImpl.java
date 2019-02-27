@@ -54,6 +54,11 @@ public class UserServiceImpl extends BaseServiceSupport<User> implements UserSer
 		pageInfo.setTotal(nTotal);
 		return pageInfo;
 	}
+	@Override
+	public User getUser(User u) {
+		// TODO Auto-generated method stub
+		return userDao.getUser(u);
+	}
 	
 	
 

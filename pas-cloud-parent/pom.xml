@@ -20,7 +20,7 @@
 		<zookeeper.version>3.4.6</zookeeper.version>
 		<zkclient.version>0.1</zkclient.version>
 
-		<mortbay.jetty.version>6.1.8</mortbay.jetty.version>
+		<mortbay.jetty.version>6.1.26</mortbay.jetty.version>
 		<jackson.version>1.9.12</jackson.version>
 		<slf4j.version>1.6.4</slf4j.version>
 

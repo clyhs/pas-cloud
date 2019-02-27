@@ -14,5 +14,7 @@ public interface IUserBusiness {
 	public void insert(User u);
 	
 	public PageInfo<User> select(User t,int pageNum,int pageSize);
+	
+	public User getUser(String username);
 
 }
