@@ -32,7 +32,8 @@
 			</props>
 		</property>
 	</bean>
-
+    <!-- spring3.x -->
+    <!-- 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
 		<property name="order" value="1" />
@@ -49,11 +50,8 @@
 		</property>
 		<property name="defaultViews">
 			<list>
-				<!-- Renders JSON View -->
 				<bean
 					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
-
-				<!-- Renders XML View -->
 				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<constructor-arg>
 						<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
@@ -70,7 +68,6 @@
 		</property>
 		<property name="viewResolvers">
 			<list>
-				<!-- Renders Freemarker View -->
 				<bean
 					class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 					<property name="cache" value="true" />
@@ -83,6 +80,25 @@
 					<property name="exposeSessionAttributes" value="true" />
 				</bean>
 			</list>
+		</property>
+	</bean>
+	 -->
+	
+	<!-- spring4.x -->
+	
+	<bean
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="favorParameter" value="true" />
+		<property name="ignoreAcceptHeader" value="true"></property>
+		<property name="defaultContentType" value="text/html" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+				<entry key="xls" value="application/vnd.ms-excel"/>
+			</map>
 		</property>
 	</bean>
 	

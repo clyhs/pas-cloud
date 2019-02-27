@@ -22,8 +22,8 @@
        http://www.springframework.org/schema/cache 
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd
        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <!--     
-    <dubbo:application name="pascloud-service-demo" owner="pascloud" organization="tiancom"/>-->
+         
+    <dubbo:application name="pascloud-service-demo" owner="pascloud" organization="tiancom"/>
 
     <!-- 
     <import resource="classpath*:META-INF/spring/pascloud-common.xml" />

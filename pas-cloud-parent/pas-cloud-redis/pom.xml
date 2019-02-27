@@ -17,7 +17,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring-session.version>1.0.2.RELEASE</spring-session.version>
 		<spring-redis.version>1.5.0.RELEASE</spring-redis.version>
-		<jedis.version>2.5.2</jedis.version>
+		<jedis.version>2.9.0</jedis.version>
 	</properties>
 
 	<dependencies>
@@ -27,6 +27,7 @@
 			<artifactId>jedis</artifactId>
 			<version>${jedis.version}</version>
 		</dependency>
+		<!--  
 		<dependency>
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session</artifactId>
@@ -38,12 +39,19 @@
 			<version>${spring-session.version}</version>
 			
 		</dependency>
+		
+		-->
 
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
-			<version>1.5.2.RELEASE</version>
+			<version>1.7.5.RELEASE</version>
 		</dependency>
 
+        <dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
 	</dependencies>
 </project>

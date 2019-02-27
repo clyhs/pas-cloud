@@ -57,6 +57,7 @@ public class DemoController {
 	public String index(){
 		//dataSource_1
 		stringRedisTemplate.opsForValue().set("001", "dataSource_0");
+		System.out.println(stringRedisTemplate.opsForValue().get("001"));
 		return "index";
 	}
 	

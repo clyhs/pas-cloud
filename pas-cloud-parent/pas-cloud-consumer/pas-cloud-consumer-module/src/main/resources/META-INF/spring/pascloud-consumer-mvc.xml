@@ -22,10 +22,10 @@
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
 
 	<!-- 配置spring-session -->
-	 
+	<!--  
 	<bean
 		class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration" />
-    
+    -->
 
 </beans>
 

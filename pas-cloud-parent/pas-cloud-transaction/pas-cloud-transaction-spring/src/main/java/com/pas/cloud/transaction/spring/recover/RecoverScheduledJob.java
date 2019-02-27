@@ -4,7 +4,7 @@ package com.pas.cloud.transaction.spring.recover;
 import org.apache.log4j.Logger;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
-import org.springframework.scheduling.quartz.CronTriggerBean;
+
 import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean;
 
