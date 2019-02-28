@@ -43,7 +43,7 @@
 	
 	
 	<!-- sentinel版  开始-->
-	<!--  
+	 
 	<bean id="rcc" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
         <property name="master">
             <bean class="org.springframework.data.redis.connection.RedisNode">
@@ -53,26 +53,27 @@
         <property name="sentinels">
             <set>
                 <bean class="org.springframework.data.redis.connection.RedisNode">
-                    <constructor-arg name="host" value="192.168.0.7"></constructor-arg> 
-                <constructor-arg name="port" value="26380"></constructor-arg>                   
+                    <constructor-arg name="host" value="127.0.0.1"></constructor-arg> 
+                    <constructor-arg name="port" value="26001"></constructor-arg>                   
                 </bean>
                 <bean class="org.springframework.data.redis.connection.RedisNode">
-                    <constructor-arg name="host" value="192.168.0.7"/>
-                    <constructor-arg name="port" value="26381"/>               
+                    <constructor-arg name="host" value="127.0.0.1"/>
+                    <constructor-arg name="port" value="26002"/>               
                 </bean>
                 <bean class="org.springframework.data.redis.connection.RedisNode">                   
-                    <constructor-arg name="host" value="192.168.0.7"/>
-                    <constructor-arg name="port" value="26382"/>               
+                    <constructor-arg name="host" value="127.0.0.1"/>
+                    <constructor-arg name="port" value="26003"/>               
                 </bean>
             </set>
         </property>
     </bean>
-    -->
+    
 	
 	<!-- sentinel版  结束-->
 	
 
     <!-- 集群版  开始-->
+    <!-- 
     <bean id="rcc" class="org.springframework.data.redis.connection.RedisClusterConfiguration">
 		<property name="maxRedirects" value="3"></property>
 		<property name="clusterNodes">
@@ -104,10 +105,13 @@
 	        </set>
         </property>
 	</bean>
-	
+    -->
 	<bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"  >
+		<!--  
 		<constructor-arg ref="rcc" />
-		<constructor-arg ref="jedisPoolConfig" />
+		<constructor-arg ref="jedisPoolConfig" />-->
+		<constructor-arg name="sentinelConfig" ref="rcc"></constructor-arg>
+        <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
 	</bean>
 	
 	<!-- 集群版  结束-->
