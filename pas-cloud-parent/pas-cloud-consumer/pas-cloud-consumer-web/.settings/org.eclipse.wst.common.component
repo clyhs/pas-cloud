@@ -22,9 +22,6 @@
         <dependent-module archiveName="pas-cloud-transaction-core-0.0.1-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/pas-cloud-transaction-core/pas-cloud-transaction-core">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="dubbo-2.8.4.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/dubbo/dubbo">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <property name="context-root" value="pas-cloud-consumer-web"/>
         <property name="java-output-path" value="/pas-cloud-consumer-web/target/classes"/>
     </wb-module>
