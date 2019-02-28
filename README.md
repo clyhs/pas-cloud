@@ -4,7 +4,7 @@
 
 用到的技术包括
 
-spring4.2.8+dubbox2.8.4
+spring4.3.17+dubbox2.8.4
 zookeeper:3.4.6
 redis
 
