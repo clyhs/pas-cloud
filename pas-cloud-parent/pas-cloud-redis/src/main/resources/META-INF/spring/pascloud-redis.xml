@@ -33,18 +33,44 @@
           p:blockWhenExhausted="${redis.pool.blockWhenExhausted}" />
 	
 	<!-- 单机版  开始-->
-	
-    <!--  
-	-->
-
 	<!-- 配置redis 缓存服务器 -->
 	<!--  
 	<bean id="jedisConnectionFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
 		p:hostName="${redis.host}" p:port="${redis.port}" p:poolConfig-ref="poolConfig" />
 	-->
-		
 	<!-- 单机版  结束-->	
+	
+	
+	<!-- sentinel版  开始-->
+	<!--  
+	<bean id="rcc" class="org.springframework.data.redis.connection.RedisSentinelConfiguration">
+        <property name="master">
+            <bean class="org.springframework.data.redis.connection.RedisNode">
+                <property name="name" value="mymaster"></property>
+            </bean>
+        </property>
+        <property name="sentinels">
+            <set>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.7"></constructor-arg> 
+                <constructor-arg name="port" value="26380"></constructor-arg>                   
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">
+                    <constructor-arg name="host" value="192.168.0.7"/>
+                    <constructor-arg name="port" value="26381"/>               
+                </bean>
+                <bean class="org.springframework.data.redis.connection.RedisNode">                   
+                    <constructor-arg name="host" value="192.168.0.7"/>
+                    <constructor-arg name="port" value="26382"/>               
+                </bean>
+            </set>
+        </property>
+    </bean>
+    -->
+	
+	<!-- sentinel版  结束-->
+	
 
     <!-- 集群版  开始-->
     <bean id="rcc" class="org.springframework.data.redis.connection.RedisClusterConfiguration">

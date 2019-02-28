@@ -20,7 +20,11 @@
        http://www.springframework.org/schema/util/spring-util-3.2.xsd
        http://www.springframework.org/schema/cache 
        http://www.springframework.org/schema/cache/spring-cache-3.2.xsd">
-
+    <!--  
+    <bean id="redisManager" class="org.crazycake.shiro.RedisSentinelManager">
+    	<property name="host" value="192.168.0.7:26380,192.168.0.7:26381,192.168.0.7:26382"/>
+    </bean>
+    -->
 
     <bean id="redisManager" class="org.crazycake.shiro.RedisClusterManager">
     	<property name="host" value="127.0.0.1:7000,127.0.0.1:7001,127.0.0.1:7002,127.0.0.1:7003,127.0.0.1:7004,127.0.0.1:7005"/>
