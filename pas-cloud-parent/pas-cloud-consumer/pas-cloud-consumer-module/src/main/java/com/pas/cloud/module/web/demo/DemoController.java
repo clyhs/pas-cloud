@@ -38,6 +38,7 @@ public class DemoController {
 	}
 	
 	//@Autowired
+	@Reference(version="1.0.0")
 	private DemoService demoService;
 	
 	//@Reference(version="1.0.0")
@@ -79,7 +80,8 @@ public class DemoController {
 	@RequestMapping("/hello")
 	@ResponseBody
 	public String hello(){
-		return helloService.sayHello();
+		//return helloService.sayHello();
+		return demoService.sayHello();
 	}
 	
 	@RequestMapping("/module/demo/insert")

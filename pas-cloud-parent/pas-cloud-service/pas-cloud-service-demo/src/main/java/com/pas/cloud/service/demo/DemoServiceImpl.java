@@ -18,7 +18,7 @@ import com.pas.cloud.common.MsgService;
  *
  * @version createtime:2016-6-22 下午4:00:00
  */
-@Service(version="1.0.0")
+@Service(version="1.0.0",filter="hystrix")
 public class DemoServiceImpl implements DemoService {
 	
 	@Autowired
