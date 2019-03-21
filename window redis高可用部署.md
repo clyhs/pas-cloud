@@ -1,9 +1,4 @@
----
-title: window redis 高可用部署
-date: 2019-02-28 14:30:44
-category: redis
-tags: redis
----
+
 
 ### 一、redis cluster部署
 
