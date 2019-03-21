@@ -1,0 +1,2 @@
+braveConsumer=com.pas.cloud.trace.brave.BraveDubboClientFilter
+braveProvider=com.pas.cloud.trace.brave.BraveDubboServerFilter

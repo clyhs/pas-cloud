@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.pascloud</groupId>
+		<artifactId>pas-cloud-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.pascloud</groupId>
+	<artifactId>pas-cloud-trace</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>pas-cloud-trace</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<brave.version>4.2.0</brave.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>dubbo</artifactId>
+		</dependency>
+		
+		<dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.14.8</version>
+        </dependency>
+
+		<dependency>
+			<groupId>io.zipkin.brave</groupId>
+			<artifactId>brave-core</artifactId>
+			<version>${brave.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.brave</groupId>
+			<artifactId>brave-http</artifactId>
+			<version>${brave.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.zipkin.brave</groupId>
+			<artifactId>brave-web-servlet-filter</artifactId>
+			<version>${brave.version}</version>
+		</dependency>
+	</dependencies>
+</project>
